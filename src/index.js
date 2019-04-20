@@ -1,12 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import {Router, Route, Switch} from 'react-router';
+import createbrowserhistory from 'history/createBrowserHistory';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+//
+import Login from './components/Login/Login.js';
+import Cadastro from './components/Cadastro.js';
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
+const history= createbrowserhistory();
+
+ReactDOM.render(
+    <MuiThemeProvider>
+        <Router history={history}>
+            <Switch>
+                <Route exact path="/" component={Login}/>
+                <Route exact path="/cadastrar" component={Cadastro}/>
+            </Switch>
+        </Router>
+    </MuiThemeProvider>
+    , document.getElementById('root'));
+
 serviceWorker.unregister();
