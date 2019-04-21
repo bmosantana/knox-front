@@ -7,7 +7,7 @@ import {Router, Route, Switch} from 'react-router';
 import createbrowserhistory from 'history/createBrowserHistory';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 //
-import Login from './components/Login/Login.js';
+import Login from './components/Login.js';
 import Cadastro from './components/Cadastro.js';
 
 const history= createbrowserhistory();

@@ -8,7 +8,7 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import './login.css'
+import '../css/login.css'
 
 class Login extends Component {
     state = {
@@ -28,6 +28,9 @@ class Login extends Component {
         this.setState(state => ({ showPassword: !state.showPassword }));
     };
 
+    onGoToDash = () => {
+        alert("ok")
+    }
     render() {
         return (
             <div className="login">
@@ -59,7 +62,7 @@ class Login extends Component {
                                 }
                             />
                         </FormControl>
-                        <Button variant="contained" color="primary" className="btn">
+                        <Button variant="contained" color="primary" className="btn" onClick={this.onGoToDash}>
                             Entrar
                         </Button>
                         <div className="links">
