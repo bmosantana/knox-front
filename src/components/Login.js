@@ -28,9 +28,10 @@ class Login extends Component {
         this.setState(state => ({ showPassword: !state.showPassword }));
     };
 
-    onGoToDash = () => {
-        alert("ok")
+    handleLocation = () =>{
+        window.location.href = "/cliente"
     }
+
     render() {
         return (
             <div className="login">
@@ -62,7 +63,7 @@ class Login extends Component {
                                 }
                             />
                         </FormControl>
-                        <Button variant="contained" color="primary" className="btn" onClick={this.onGoToDash}>
+                        <Button variant="contained" color="primary" className="btn" onClick={this.handleLocation}>
                             Entrar
                         </Button>
                         <div className="links">

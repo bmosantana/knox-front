@@ -1,0 +1,30 @@
+.clientes-cadastro{
+    width: 90vw;
+    padding-left: 20px!important;
+    padding-right: 20px!important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 2%;
+    position: fixed;
+}
+
+
+#page-all{
+    padding-left: 8%;
+}
+
+#titulo-form{
+    font-size: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    align-self: flex-start;
+    margin-bottom: 3%;
+}
+
+.textField{
+    width: 50%!important;
+}
+
+.MuiInput-root-32   {
+    width: 50%!important;
+}

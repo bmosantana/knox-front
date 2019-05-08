@@ -10,7 +10,6 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import ModalCadastroCliente from './ModalCadastroCliente.js';
 
 class Cliente extends Component{
     constructor(props) {
@@ -38,8 +37,8 @@ class Cliente extends Component{
         alert("Deletar")
     };
 
-    handleModal = () => {
-        this.setState({ modalStateAdd: true});
+    handlePage = () => {
+        window.location.href = "/cadastroCliente"
     };
 
     render(){
@@ -110,12 +109,11 @@ class Cliente extends Component{
 
                     {/* botão para cadastrar mais um cliente */}
                     <div id="fab-add">
-                        <Fab color="primary" aria-label="Add"  onClick={this.handleModal}>
+                        <Fab color="primary" aria-label="Add"  onClick={this.handlePage}>
                           <Icon>add</Icon>
                         </Fab>
                     </div>
                 </div>
-                <ModalCadastroCliente modalState={this.state.modalStateAdd} click={this.handleModal} />
             </div>
         )
     }
