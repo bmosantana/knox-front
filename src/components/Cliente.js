@@ -11,6 +11,13 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
 class Cliente extends Component{
     constructor(props) {
         super(props)
@@ -35,6 +42,10 @@ class Cliente extends Component{
 
     handleDeletar = () =>{
         alert("Deletar")
+    };
+
+    handleModalDelete = () =>{
+        this.setState({modalStateAdd: !this.state.modalStateAdd});
     };
 
     handlePage = () => {
@@ -67,7 +78,7 @@ class Cliente extends Component{
 
                     {/* listagem de fato */}
                     <div id="lista-clientes">
-                        <Card>
+                        <Card style={{width: "50vw"}}>
                             <CardContent>
                               <Typography gutterBottom variant="h5" component="h2">
                                 Ana Clara Souza
@@ -99,7 +110,7 @@ class Cliente extends Component{
 
                             <IconButton
                                 aria-label="Mudar visualizacao campo"
-                                onClick={this.handleDeletar}
+                                onClick={this.handleModalDelete}
                             >
                                 <Icon style={{ color: "black" }}>delete</Icon>
                             </IconButton>
@@ -114,6 +125,31 @@ class Cliente extends Component{
                         </Fab>
                     </div>
                 </div>
+
+                {/* Dialogo que abre para verificar se o usuario deseja realmente deletar o cliente */}
+                <Dialog
+                  open={this.state.modalStateAdd}
+                  onClose={this.handleModalDelete}
+                  aria-labelledby="alert-dialog-title"
+                  aria-describedby="alert-dialog-description"
+                >
+                    <DialogTitle id="alert-dialog-title">
+                        {"Deseja realmente deletar esse Cliente?"}
+                    </DialogTitle>
+                    <DialogContent>
+                      <DialogContentText id="alert-dialog-description">
+                        Após esse cliente ser deletado você não poderá mais busca-lo na sua listagem, e nem atribuir eventos a ele.
+                      </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                      <Button onClick={this.handleModalDelete} color="primary">
+                        SIM
+                      </Button>
+                      <Button onClick={this.handleModalDelete} color="primary" autoFocus>
+                        NÃO
+                      </Button>
+                    </DialogActions>
+                </Dialog>
             </div>
         )
     }

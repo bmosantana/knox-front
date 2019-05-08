@@ -4,8 +4,8 @@ import MenuItem from 'material-ui/MenuItem';
 import { NavLink } from 'react-router-dom';
 import ReactTooltip from 'react-tooltip';
 import Icon from '@material-ui/core/Icon';
-import avatar from '../imagens/avatar.png';
-import IconMenu from 'material-ui/IconMenu';
+// import avatar from '../imagens/avatar.png';
+// import IconMenu from 'material-ui/IconMenu';
 import '../css/MenuLateral.css';
 
 
@@ -16,7 +16,7 @@ class MenuLateral extends Component {
     render() {
         return (
             <Drawer open={this.props.collapsed} containerStyle={{ paddingTop: "70px", backgroundColor: "#8a2be2", width: "auto", overflow: "hidden" }} className="menu">
-                <NavLink
+                {/* <NavLink
                     exact
                     to="/"
                     activeClassName="active"
@@ -25,7 +25,7 @@ class MenuLateral extends Component {
                     <MenuItem style={{ color: "white" }} innerDivStyle={{ marginTop: "20px", paddingTop: "20px" }}>
                         <Icon>home</Icon>
                     </MenuItem>
-                </NavLink> 
+                </NavLink>  */}
                 <NavLink
                     exact
                     to="/cliente"

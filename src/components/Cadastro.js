@@ -11,22 +11,23 @@ import Button from '@material-ui/core/Button';
 import '../css/cadastro.css';
 
 class Cadastro extends Component {
-    state = {
-        nome: '',
-        usuario: '',
-        senha: '',
-        email: '',
-        cpf: '',
-        rg: '',
-        cargo: '',
-        telefone: '',
-        dataContatacao: '',
-        dataNascimento: '',
-        oabNum: '',
-        showPassword: false,
-    };
+    
     constructor(props) {
         super(props)
+        this.state = {
+            nome: '',
+            usuario: '',
+            senha: '',
+            email: '',
+            cpf: '',
+            rg: '',
+            cargo: '',
+            telefone: '',
+            dataContatacao: '',
+            dataNascimento: '',
+            oabNum: '',
+            showPassword: false,
+        }
     }
 
     handleChange = props => event => {
