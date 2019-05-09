@@ -81,6 +81,7 @@ class CadastroCliente extends Component {
               label="CPF*"
               margin="normal"
               type="text"
+              value={this.state.cpf}
               style={{ width: "30vw", paddingRight: '0px' }}
             />
 
@@ -89,6 +90,7 @@ class CadastroCliente extends Component {
               label="RG*"
               margin="normal"
               type="text"
+              value={this.state.rg}
               style={{ width: "30vw" }}
             />
 
@@ -97,6 +99,7 @@ class CadastroCliente extends Component {
               label="Numero do PIS"
               margin="normal"
               type="text"
+              value={this.state.numeropis}
               style={{ width: "90vw" }}
             />
 
@@ -105,6 +108,7 @@ class CadastroCliente extends Component {
               label="Numero da Carteira de Trabalho"
               margin="normal"
               type="text"
+              value={this.state.numerocarteiratrabalho}
               style={{ width: "90vw" }}
             /><br />
 
@@ -114,6 +118,7 @@ class CadastroCliente extends Component {
               label="CEP*"
               margin="normal"
               type="text"
+              value={this.state.cep}
               style={{ width: "90vw" }}
             />
 
@@ -122,6 +127,7 @@ class CadastroCliente extends Component {
               label="Logradouro*"
               margin="normal"
               type="text"
+              value={this.state.logradouro}
               style={{ width: "90vw" }}
             />
 
@@ -130,6 +136,7 @@ class CadastroCliente extends Component {
               label="Rua*"
               margin="normal"
               type="text"
+              value={this.state.rua}
               style={{ width: "90vw" }}
             />
 
@@ -138,6 +145,7 @@ class CadastroCliente extends Component {
               label="Número*"
               margin="normal"
               type="text"
+              value={this.state.numero}
               style={{ width: "15vw" }}
             />
 
@@ -146,6 +154,7 @@ class CadastroCliente extends Component {
               label="Complemento*"
               margin="normal"
               type="text"
+              value={this.state.complemento}
               style={{ width: "60vw" }}
             />
 
@@ -154,6 +163,7 @@ class CadastroCliente extends Component {
               label="Cidade*"
               margin="normal"
               type="text"
+              value={this.state.cidade}
               style={{ width: "38vw" }}
             />
 
@@ -162,6 +172,7 @@ class CadastroCliente extends Component {
               label="Estado*"
               margin="normal"
               type="text"
+              value={this.state.uf}
               style={{ width: "15vw" }}
             />
 
@@ -172,6 +183,7 @@ class CadastroCliente extends Component {
               label="Telefone Residencial*"
               margin="normal"
               type="text"
+              value={this.state.residencial}
               style={{ width: "90vw" }}
             />
 
@@ -180,6 +192,7 @@ class CadastroCliente extends Component {
               label="Telefone Comercial*"
               margin="normal"
               type="text"
+              value={this.state.comercial}
               style={{ width: "90vw" }}
             />
 
@@ -188,6 +201,7 @@ class CadastroCliente extends Component {
               label="Celular*"
               margin="normal"
               type="text"
+              value={this.state.celular}
               style={{ width: "90vw" }}
             />
 
@@ -196,16 +210,17 @@ class CadastroCliente extends Component {
               label="E-mail*"
               margin="normal"
               type="email"
+              value={this.state.email}
               style={{ width: "90vw" }}
             />
 
             <div id="buttons">
               <Button variant="contained" color="primary" className="btn">
-                <a href="/">Voltar</a>
+                Voltar
               </Button>
 
               <Button variant="contained" color="primary" className="btn">
-                <a href="/">Enviar</a>
+                Enviar
               </Button>
             </div>
           </form>
