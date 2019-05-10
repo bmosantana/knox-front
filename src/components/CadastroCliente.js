@@ -13,24 +13,24 @@ class CadastroCliente extends Component {
     this.state = {
       activeStep: 0,
 
-      nome: "",
-      cpf: "",
-      rg: "",
-      numeropis: "",
-      numerocarteiratrabalho: "",
+      nome: '',
+      cpf: '',
+      rg: '',
+      numeropis: '',
+      numerocarteiratrabalho: '',
 
-      cep: "",
-      logradouro: "",
-      rua: "",
-      complemento: "",
-      numero: "",
-      cidade: "",
-      uf: "",
+      cep: '',
+      logradouro: '',
+      rua: '',
+      complemento: '',
+      numero: '',
+      cidade: '',
+      uf: '',
 
-      residencial: "",
-      comercial: "",
-      email: "",
-      celular: ""
+      residencial: '',
+      comercial: '',
+      email: '',
+      celular: '',
     };
 
   }
@@ -46,7 +46,7 @@ class CadastroCliente extends Component {
   handleSubmit = () => {
     alert("cad")
   };
-
+ 
   render() {
     return (
       <div id="page-all">
@@ -73,6 +73,7 @@ class CadastroCliente extends Component {
               margin="normal"
               type="text"
               value={this.state.nome}
+              onChange = {this.handleChange('nome')}
               style={{ width: "90vw" }}
             />
 
@@ -82,6 +83,7 @@ class CadastroCliente extends Component {
               margin="normal"
               type="text"
               value={this.state.cpf}
+              onChange = {this.handleChange('cpf')}
               style={{ width: "30vw", paddingRight: '0px' }}
             />
 
@@ -91,20 +93,22 @@ class CadastroCliente extends Component {
               margin="normal"
               type="text"
               value={this.state.rg}
+              onChange = {this.handleChange('rg')}
               style={{ width: "30vw" }}
             />
 
             <TextField
-              id="pis"
+              id="numeropis"
               label="Numero do PIS"
               margin="normal"
               type="text"
               value={this.state.numeropis}
+              onChange = {this.handleChange('numeropis')}
               style={{ width: "90vw" }}
             />
 
             <TextField
-              id="carteira-trabalho"
+              id="numerocarteiratrabalho"
               label="Numero da Carteira de Trabalho"
               margin="normal"
               type="text"
@@ -119,6 +123,7 @@ class CadastroCliente extends Component {
               margin="normal"
               type="text"
               value={this.state.cep}
+              onChange = {this.handleChange('cep')}
               style={{ width: "90vw" }}
             />
 
@@ -128,6 +133,7 @@ class CadastroCliente extends Component {
               margin="normal"
               type="text"
               value={this.state.logradouro}
+              onChange = {this.handleChange('logradouro')}
               style={{ width: "90vw" }}
             />
 
@@ -137,6 +143,7 @@ class CadastroCliente extends Component {
               margin="normal"
               type="text"
               value={this.state.rua}
+              onChange = {this.handleChange('rua')}
               style={{ width: "90vw" }}
             />
 
@@ -146,6 +153,7 @@ class CadastroCliente extends Component {
               margin="normal"
               type="text"
               value={this.state.numero}
+              onChange = {this.handleChange('numero')}
               style={{ width: "15vw" }}
             />
 
@@ -155,6 +163,7 @@ class CadastroCliente extends Component {
               margin="normal"
               type="text"
               value={this.state.complemento}
+              onChange = {this.handleChange('complemento')}
               style={{ width: "60vw" }}
             />
 
@@ -164,6 +173,7 @@ class CadastroCliente extends Component {
               margin="normal"
               type="text"
               value={this.state.cidade}
+              onChange = {this.handleChange('cidade')}
               style={{ width: "38vw" }}
             />
 
@@ -173,6 +183,7 @@ class CadastroCliente extends Component {
               margin="normal"
               type="text"
               value={this.state.uf}
+              onChange = {this.handleChange('uf')}
               style={{ width: "15vw" }}
             />
 
@@ -184,6 +195,7 @@ class CadastroCliente extends Component {
               margin="normal"
               type="text"
               value={this.state.residencial}
+              onChange = {this.handleChange('residencial')}
               style={{ width: "90vw" }}
             />
 
@@ -193,6 +205,7 @@ class CadastroCliente extends Component {
               margin="normal"
               type="text"
               value={this.state.comercial}
+              onChange = {this.handleChange('comercial')}
               style={{ width: "90vw" }}
             />
 
@@ -202,6 +215,7 @@ class CadastroCliente extends Component {
               margin="normal"
               type="text"
               value={this.state.celular}
+              onChange = {this.handleChange('celular')}
               style={{ width: "90vw" }}
             />
 
@@ -211,12 +225,13 @@ class CadastroCliente extends Component {
               margin="normal"
               type="email"
               value={this.state.email}
+              onChange = {this.handleChange('email')}
               style={{ width: "90vw" }}
             />
 
             <div id="buttons">
               <Button variant="contained" color="primary" className="btn">
-                Voltar
+                Cancelar
               </Button>
 
               <Button variant="contained" color="primary" className="btn">
