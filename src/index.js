@@ -7,9 +7,9 @@ import createbrowserhistory from 'history/createBrowserHistory';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 //
 import Login from './components/Login.js';
-import Cadastro from './components/Cadastro.js';
 import Cliente from './components/Cliente.js';
 import CadastroCliente from './components/CadastroCliente.js';
+import ModalEditarCliente from './components/ModalEditarCliente.js';
 
 const history= createbrowserhistory();
 
@@ -18,9 +18,9 @@ ReactDOM.render(
         <Router history={history}>
             <Switch>
                 <Route exact path="/" component={Login}/>
-                <Route exact path="/cadastrar" component={Cadastro}/>
                 <Route exact path="/cliente" component={Cliente}/>
                 <Route exact path="/cadastroCliente" component={CadastroCliente}/>
+                <Route exact path="/editarcliente" component={ModalEditarCliente}/>
             </Switch>
         </Router>
     </MuiThemeProvider>

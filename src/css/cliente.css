@@ -9,12 +9,12 @@
 }
 
 #pesquisa{
-    width: 40vw;
+    width: 40vw!important;
 }
 
 #campo-busca{
-    align-self: center;
-    position: initial;
+    align-self: center!important;
+    position: initial!important;
 }
 
 #fab-add{

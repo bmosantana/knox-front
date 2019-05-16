@@ -10,8 +10,8 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-
 import Button from '@material-ui/core/Button';
+import ModalEditarCliente from './ModalEditarCliente.js';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -23,6 +23,8 @@ class Cliente extends Component{
         super(props)
         this.state={
             modalStateAdd: false,
+            editmodal: false,
+            open: false,
         }
         // // Bind, utilizado para o método enxergar o "this"
         // this.handleModal = this.handleModal.bind(this)
@@ -37,7 +39,7 @@ class Cliente extends Component{
     };
 
     handleEditar = () =>{
-        alert("Editar")
+        this.setState({editmodal: !this.state.open});
     };
 
     handleDeletar = () =>{
@@ -150,7 +152,9 @@ class Cliente extends Component{
                       </Button>
                     </DialogActions>
                 </Dialog>
+                <ModalEditarCliente open={this.state.editmodal}/>
             </div>
+
         )
     }
 }

@@ -67,7 +67,7 @@ class Login extends Component {
                             Entrar
                         </Button>
                         <div className="links">
-                            <label><a href="/cadastrar">Cadastrar</a></label>
+                            <label><a href="#">Cadastrar</a></label>
                             <label><a href="#">Esqueci minha senha</a></label>
                         </div>
                     </FormControl>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import MenuLateral from './MenuLateral.js';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import '../css/CadastroCliente.css';
+import '../css/cadastroCliente.css';
 // import '../css/cadastro.css';
 
 
@@ -13,24 +13,26 @@ class CadastroCliente extends Component {
     this.state = {
       activeStep: 0,
 
-      nome: '',
-      cpf: '',
-      rg: '',
-      numeropis: '',
-      numerocarteiratrabalho: '',
-
-      cep: '',
-      logradouro: '',
-      rua: '',
-      complemento: '',
-      numero: '',
-      cidade: '',
-      uf: '',
-
-      residencial: '',
-      comercial: '',
-      email: '',
-      celular: '',
+      usuario:{
+        nome: '',
+        cpf: '',
+        rg: '',
+        numeropis: '',
+        numerocarteiratrabalho: '',
+        
+        cep: '',
+        logradouro: '',
+        rua: '',
+        complemento: '',
+        numero: '',
+        cidade: '',
+        uf: '',
+        
+        residencial: '',
+        comercial: '',
+        email: '',
+        celular: ''
+      }
     };
 
   }
