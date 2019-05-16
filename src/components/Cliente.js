@@ -39,7 +39,7 @@ class Cliente extends Component{
     };
 
     handleEditar = () =>{
-        this.setState({editmodal: !this.state.open});
+        this.setState({editmodal: !this.state.editmodal});
     };
 
     handleDeletar = () =>{
@@ -152,7 +152,8 @@ class Cliente extends Component{
                       </Button>
                     </DialogActions>
                 </Dialog>
-                <ModalEditarCliente open={this.state.editmodal}/>
+
+                <ModalEditarCliente editmodal={this.state.editmodal}/>
             </div>
 
         )

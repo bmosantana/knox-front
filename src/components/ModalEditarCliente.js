@@ -10,19 +10,20 @@ class ModalEditarCliente extends Component {
     constructor(props) {
         super(props)
         this.state={
-            editmodal: false,
+          editmodal: false,
+          cancelState: false
         }        
     }
 
     handleClose = () =>{
-        this.setState({editmodal: !this.state.editmodal});
+      this.setState({editmodal: false});
     }
 
     render() {
         return (
             <div>
                 <Dialog
-                    open={this.state.editmodal}
+                    open={this.props.editmodal}
                     onClose={this.handleClose}
                     scroll="paper"
                     aria-labelledby="scroll-dialog-title"
@@ -36,10 +37,10 @@ class ModalEditarCliente extends Component {
                       </DialogContentText>
                     </DialogContent>
                     <DialogActions>
-                      <Button onClick={this.handleClose} color="primary">
+                      <Button  color="primary" onClick={this.handleClose}>
                         Cancel
                       </Button>
-                      <Button onClick={this.handleClose} color="primary">
+                      <Button  color="primary">
                         Subscribe
                       </Button>
                     </DialogActions>
