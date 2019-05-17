@@ -12,8 +12,6 @@ class CadastroCliente extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      activeStep: 0,
-
       usuario:{
         nome: '',
         cpf: '',
@@ -48,45 +46,39 @@ class CadastroCliente extends Component {
     window.location = "/cliente"
   }
 
-  handleSubmit = () => {
-    let usuario = this.state.usuario
-
-    fetch( enderecoApi + "cliente", {
-      method: "POST",
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(usuario)
-    })
-    .then((response) => {
-      if(response !== 200){
-        alert("Verifique se os dados estão corretos entes de finalizar o seu cadastro.")
-      }else{
-        alert("Cadastro realizado com SUCESSO.")
-      }
-      return response.json();
-    });
+  handleSubmit = (event) => {
+    event.preventDefault();
+    let usuario = this.state.usuario;
+    alert(usuario.nome)
+    // fetch( enderecoApi + "cliente", {
+    //   method: "POST",
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify(usuario)
+    // })
+    // .then((response) => {
+    //   if(response !== 200){
+    //     alert("Verifique se os dados estão corretos entes de finalizar o seu cadastro.")
+    //   }else{
+    //     alert("Cadastro realizado com SUCESSO.")
+    //   }
+    //   return response.json();
+    // });
   };
  
   render() {
     return (
       <div id="page-all">
         <MenuLateral />
-
         <div className="clientes-cadastro">
-
-          {/* Titulo da Página */}
           <div>
             <p id="titulo-form">Cadastro de Cliente</p>
           </div>
 
-          {/* Formulario de envio */}
+          <form onSubmit={this.handleSubmit} className="form-style">
 
-          <form method="get" onSubmit={this.handleSubmit} className="form-style">
-            {/* Div que contem os primeiros campos */}
-
-            {/* Campo de Nome */}
             <p className="desc-cad">Dados Pessoais</p>
             <TextField
               className="textfield-cli"
@@ -256,7 +248,7 @@ class CadastroCliente extends Component {
                 Cancelar
               </Button>
 
-              <Button variant="contained" color="primary" className="btn" onClick={this.handleSubmit}>
+              <Button variant="contained" color="primary" className="btn" type="submit" value="Submit">
                 Enviar
               </Button>
             </div>
