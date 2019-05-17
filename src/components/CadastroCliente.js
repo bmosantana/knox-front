@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import '../css/cadastroCliente.css';
 // import '../css/cadastro.css';
 
+const enderecoApi = "http://localhost:8080/"
 
 class CadastroCliente extends Component {
 
@@ -17,19 +18,17 @@ class CadastroCliente extends Component {
         nome: '',
         cpf: '',
         rg: '',
-        numeropis: '',
-        numerocarteiratrabalho: '',
-        
+        pis: '',
+        carteira_trabalho: '',
         cep: '',
         logradouro: '',
-        rua: '',
+        nomeRua: '',
         complemento: '',
         numero: '',
         cidade: '',
-        uf: '',
-        
-        residencial: '',
-        comercial: '',
+        UF: '',
+        telefoneResidencial: '',
+        telefoneComercial: '',
         email: '',
         celular: ''
       }
@@ -45,8 +44,29 @@ class CadastroCliente extends Component {
     this.setState({ [props]: event.target.value });
   };
 
+  handleBack = ()  =>{
+    window.location = "/cliente"
+  }
+
   handleSubmit = () => {
-    alert("cad")
+    let usuario = this.state.usuario
+
+    fetch( enderecoApi + "cliente", {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(usuario)
+    })
+    .then((response) => {
+      if(response !== 200){
+        alert("Verifique se os dados estão corretos entes de finalizar o seu cadastro.")
+      }else{
+        alert("Cadastro realizado com SUCESSO.")
+      }
+      return response.json();
+    });
   };
  
   render() {
@@ -100,21 +120,21 @@ class CadastroCliente extends Component {
             />
 
             <TextField
-              id="numeropis"
+              id="pis"
               label="Numero do PIS"
               margin="normal"
               type="text"
-              value={this.state.numeropis}
-              onChange = {this.handleChange('numeropis')}
+              value={this.state.pis}
+              onChange = {this.handleChange('pis')}
               style={{ width: "90vw" }}
             />
 
             <TextField
-              id="numerocarteiratrabalho"
+              id="carteira_trabalho"
               label="Numero da Carteira de Trabalho"
               margin="normal"
               type="text"
-              value={this.state.numerocarteiratrabalho}
+              value={this.state.carteira_trabalho}
               style={{ width: "90vw" }}
             /><br />
 
@@ -140,12 +160,12 @@ class CadastroCliente extends Component {
             />
 
             <TextField
-              id="rua"
-              label="Rua*"
+              id="nomeRua"
+              label="nomeRua*"
               margin="normal"
               type="text"
-              value={this.state.rua}
-              onChange = {this.handleChange('rua')}
+              value={this.state.nomeRua}
+              onChange = {this.handleChange('nomeRua')}
               style={{ width: "90vw" }}
             />
 
@@ -161,7 +181,7 @@ class CadastroCliente extends Component {
 
             <TextField
               id="complemento"
-              label="Complemento*"
+              label="complemento*"
               margin="normal"
               type="text"
               value={this.state.complemento}
@@ -180,34 +200,34 @@ class CadastroCliente extends Component {
             />
 
             <TextField
-              id="uf"
+              id="UF"
               label="Estado*"
               margin="normal"
               type="text"
-              value={this.state.uf}
-              onChange = {this.handleChange('uf')}
+              value={this.state.UF}
+              onChange = {this.handleChange('UF')}
               style={{ width: "15vw" }}
             />
 
             <p className="desc-cad marg-desc">Contato</p>
 
             <TextField
-              id="residencial"
-              label="Telefone Residencial*"
+              id="telefoneResidencial"
+              label="Telefone telefoneResidencial*"
               margin="normal"
               type="text"
-              value={this.state.residencial}
-              onChange = {this.handleChange('residencial')}
+              value={this.state.telefoneResidencial}
+              onChange = {this.handleChange('telefoneResidencial')}
               style={{ width: "90vw" }}
             />
 
             <TextField
-              id="comercial"
-              label="Telefone Comercial*"
+              id="telefoneComercial"
+              label="Telefone telefoneComercial*"
               margin="normal"
               type="text"
-              value={this.state.comercial}
-              onChange = {this.handleChange('comercial')}
+              value={this.state.telefoneComercial}
+              onChange = {this.handleChange('telefoneComercial')}
               style={{ width: "90vw" }}
             />
 
@@ -232,11 +252,11 @@ class CadastroCliente extends Component {
             />
 
             <div id="buttons">
-              <Button variant="contained" color="primary" className="btn">
+              <Button variant="contained" color="primary" className="btn" onClick={this.handleBack}>
                 Cancelar
               </Button>
 
-              <Button variant="contained" color="primary" className="btn">
+              <Button variant="contained" color="primary" className="btn" onClick={this.handleSubmit}>
                 Enviar
               </Button>
             </div>

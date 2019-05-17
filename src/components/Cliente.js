@@ -120,6 +120,47 @@ class Cliente extends Component{
                         </Card>
                     </div>
 
+                    <div id="lista-clientes">
+                        <Card style={{width: "50vw"}}>
+                            <CardContent>
+                              <Typography gutterBottom variant="h5" component="h2">
+                                Ligia Duarte
+                              </Typography>
+
+                              <Typography component="p">
+                                E-mail: ligia@duarte.com.br
+                              </Typography>
+
+                              <Typography component="p">
+                                Telefone: (11) 1234-56789
+                              </Typography>
+
+                            </CardContent>
+                          <CardActions id="acoes-card">
+                            <IconButton
+                                aria-label="Mudar visualizacao campo"
+                                onClick={this.handleVerMais}
+                            >
+                                <Icon style={{ color: "black" }}>more_vert</Icon>
+                            </IconButton>
+
+                            <IconButton
+                                aria-label="Mudar visualizacao campo"
+                                onClick={this.handleEditar}
+                            >
+                                <Icon style={{ color: "black" }}>edit</Icon>
+                            </IconButton>
+
+                            <IconButton
+                                aria-label="Mudar visualizacao campo"
+                                onClick={this.handleModalDelete}
+                            >
+                                <Icon style={{ color: "black" }}>delete</Icon>
+                            </IconButton>
+                          </CardActions>
+                        </Card>
+                    </div>
+
                     {/* botão para cadastrar mais um cliente */}
                     <div id="fab-add">
                         <Fab color="primary" aria-label="Add"  onClick={this.handlePage}>
