@@ -10,6 +10,7 @@ import Login from './components/Login.js';
 import Cliente from './components/Cliente.js';
 import CadastroCliente from './components/CadastroCliente.js';
 import ModalEditarCliente from './components/ModalEditarCliente.js';
+import Dashboard from './components/Dashboard.js';
 
 const history= createbrowserhistory();
 
@@ -18,9 +19,10 @@ ReactDOM.render(
         <Router history={history}>
             <Switch>
                 <Route exact path="/" component={Login}/>
-                <Route exact path="/cliente" component={Cliente}/>
-                <Route exact path="/cadastroCliente" component={CadastroCliente}/>
-                <Route exact path="/editarcliente" component={ModalEditarCliente}/>
+                <Route path="/cliente" component={Cliente}/>
+                <Route path="/cadastroCliente" component={CadastroCliente}/>
+                <Route path="/editarcliente" component={ModalEditarCliente}/>
+                <Route path="/dashboard" component={Dashboard}/>
             </Switch>
         </Router>
     </MuiThemeProvider>

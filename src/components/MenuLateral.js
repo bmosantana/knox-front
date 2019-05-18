@@ -16,16 +16,16 @@ class MenuLateral extends Component {
     render() {
         return (
             <Drawer open={this.props.collapsed} containerStyle={{ paddingTop: "70px", backgroundColor: "#8a2be2", width: "auto", overflow: "hidden" }} className="menu">
-                {/* <NavLink
+                <NavLink
                     exact
-                    to="/"
+                    to="/dashboard"
                     activeClassName="active"
                     
                 >
                     <MenuItem style={{ color: "white" }} innerDivStyle={{ marginTop: "20px", paddingTop: "20px" }}>
                         <Icon>home</Icon>
                     </MenuItem>
-                </NavLink>  */}
+                </NavLink> 
                 <NavLink
                     exact
                     to="/cliente"
