@@ -29,7 +29,7 @@ class Login extends Component {
     };
 
     handleLocation = () =>{
-        window.location.href = "/cliente"
+        window.location.href = "/dashboard"
     }
 
     render() {
