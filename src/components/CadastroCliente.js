@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import MenuLateral from './MenuLateral.js';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import './src/css/cadastroCliente.css';
+import '../css/login.css'
+//import './src/css/cadastroCliente.css';
 // import '../css/cadastro.css';
 
 const enderecoApi = "http://localhost:8080/"
