@@ -5,8 +5,8 @@ import Button from '@material-ui/core/Button';
 import '../css/cadastroCliente.css';
 // import '../css/cadastro.css';
 
-const enderecoApi = "http://localhost:8080/"
-
+//const enderecoApi = "http://localhost:8080/"
+//aaa
 class CadastroCliente extends Component {
 
   constructor(props) {
