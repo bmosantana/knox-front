@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MenuLateral from './MenuLateral.js';
 import Fab from '@material-ui/core/Fab';
-import '../css/cliente.css'
+import './css/cliente.css'
 import IconButton from '@material-ui/core/IconButton';
 import Input from '@material-ui/core/Input';
 import InputAdornment from '@material-ui/core/InputAdornment';

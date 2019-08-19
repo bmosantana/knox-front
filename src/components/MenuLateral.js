@@ -6,7 +6,7 @@ import ReactTooltip from 'react-tooltip';
 import Icon from '@material-ui/core/Icon';
 // import avatar from '../imagens/avatar.png';
 // import IconMenu from 'material-ui/IconMenu';
-import '../css/menuLateral.css';
+import './css/menuLateral.css';
 
 
 class MenuLateral extends Component {

@@ -6,7 +6,7 @@ import Fab from '@material-ui/core/Fab';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
-import '../css/dash.css';
+import './css/dash.css';
 
 class Dashboard extends Component {
     constructor(props) {

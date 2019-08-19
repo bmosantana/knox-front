@@ -6,7 +6,7 @@ import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
 import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton';
 import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle } from 'material-ui/Toolbar';
-import '../css/header.css';
+import './css/header.css';
 import avatar from '../imagens/avatar.png'
 
 class Header extends Component{
