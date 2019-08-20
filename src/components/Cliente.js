@@ -1,3 +1,4 @@
+//Página de listagem / busca de clientes
 import React, { Component } from 'react';
 import MenuLateral from './MenuLateral.js';
 import Fab from '@material-ui/core/Fab';
