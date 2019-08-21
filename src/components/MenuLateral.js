@@ -32,6 +32,15 @@ class MenuLateral extends Component {
                     activeClassName="active"
                 >
                     <MenuItem style={{ color: "white" }} innerDivStyle={{ marginTop: "20px", paddingTop: "20px" }}>
+                        <Icon>how_to_reg</Icon>
+                    </MenuItem>
+                </NavLink>
+                <NavLink
+                    exact
+                    to="/funcionario"
+                    activeClassName="active"
+                >
+                    <MenuItem style={{ color: "white" }} innerDivStyle={{ marginTop: "20px", paddingTop: "20px" }}>
                         <Icon>supervisor_account</Icon>
                     </MenuItem>
                 </NavLink>
