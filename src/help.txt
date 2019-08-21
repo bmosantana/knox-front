@@ -1,0 +1,17 @@
+Comando para ajuda-los caso usem o command line do github.
+
+Mudar de branch
+    git checkout <branch para onde você quer ir>
+
+Deletar uma branch
+    gir branch -D <branch que você quer deletar>
+
+Listar todas as branchs
+    git branch
+
+Push em branch diferente
+    exemplo:    git push origin desenvolvimento
+
+Atualizar a branch
+    git pull
+
