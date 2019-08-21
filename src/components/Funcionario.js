@@ -1,4 +1,4 @@
-//Página de listagem / busca de clientes
+//Página de listagem / busca de funcionario
 import React, { Component } from 'react';
 import MenuLateral from './MenuLateral.js';
 import Fab from '@material-ui/core/Fab';
@@ -18,12 +18,10 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
 
 
 
-class Cliente extends Component{
+class Funcionario extends Component{
   
     constructor(props) {
         super(props)
@@ -66,9 +64,9 @@ class Cliente extends Component{
             <div>
                 <MenuLateral/>
                 
-                <div id="none-box">
-                  <span id="name">Cliente</span>
-                </div>
+                  <div id="none-box">
+                    <span id="name">Funcionario</span>
+                  </div>
                 
                 <div className="clientes-page">
                     {/* Campo de buscar e botão de adicionar */}
@@ -212,4 +210,4 @@ class Cliente extends Component{
     }
 }
 
-export default Cliente;
+export default Funcionario;
