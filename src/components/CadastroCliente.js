@@ -14,7 +14,7 @@ class CadastroCliente extends Component {
     super(props)
     this.state = {
       usuario:{
-        nome: '',
+        nome: "",
         cpf: '',
         rg: '',
         pis: '',
@@ -32,12 +32,18 @@ class CadastroCliente extends Component {
         celular: ''
       }
     };
-
+    this.handleNome = this.handleNome.bind(this);
   }
 
   // componentWillReceiveProps(newProps) {
   //     this.setState({modalState: newProps.modalState})
   // };
+  handleNome(event) {
+        let usuario = this.state.usuario;
+        usuario.nome = event.target.value;
+
+        console.log(usuario.nome);
+  }
 
   handleChange = props => event => {
     this.setState({ [props]: event.target.value });
@@ -48,8 +54,8 @@ class CadastroCliente extends Component {
   }
 
   handleSubmit = (event) => {
-    event.preventDefault();
-    let usuario = this.state.usuario;
+    // event.preventDefault();
+     let usuario = this.state.usuario;
     alert(usuario.nome)
     // fetch( enderecoApi + "cliente", {
     //   method: "POST",
@@ -87,8 +93,8 @@ class CadastroCliente extends Component {
               label="Nome*"
               margin="normal"
               type="text"
-              value={this.state.nome}
-              onChange = {this.handleChange('nome')}
+              value={this.state.usuario.nome}
+              onChange={this.handleNome}
               style={{ width: "90vw" }}
             />
 
@@ -249,7 +255,7 @@ class CadastroCliente extends Component {
                 Cancelar
               </Button>
 
-              <Button variant="contained" color="primary" className="btn" type="submit" value="Submit">
+              <Button variant="contained" color="primary" className="btn" type="submit" value="Submit" >
                 Enviar
               </Button>
             </div>
