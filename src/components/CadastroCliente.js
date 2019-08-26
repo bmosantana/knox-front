@@ -32,7 +32,6 @@ class CadastroCliente extends Component {
         celular: ''
       }
     };
-    this.handleNome = this.handleNome.bind(this);
   }
 
   // componentWillReceiveProps(newProps) {
@@ -45,8 +44,14 @@ class CadastroCliente extends Component {
         console.log(usuario.nome);
   }
 
-  handleChange = props => event => {
-    this.setState({ [props]: event.target.value });
+  handleChange = (event,prop) => {
+    //console.log(props)
+    //console.log(event.nativeEvent.data)
+    let obj = this.state.usuario
+    if(event.nativeEvent != null) {
+      obj[prop] += event.nativeEvent.data
+      this.setState({ usuario: obj});
+    }
   };
 
   handleBack = ()  =>{
@@ -54,9 +59,12 @@ class CadastroCliente extends Component {
   }
 
   handleSubmit = (event) => {
-    // event.preventDefault();
      let usuario = this.state.usuario;
-    alert(usuario.nome)
+    alert(usuario)
+    
+  };
+
+  SendApiData= () =>{
     // fetch( enderecoApi + "cliente", {
     //   method: "POST",
     //   headers: {
@@ -73,7 +81,7 @@ class CadastroCliente extends Component {
     //   }
     //   return response.json();
     // });
-  };
+  }
  
   render() {
     return (
@@ -94,7 +102,7 @@ class CadastroCliente extends Component {
               margin="normal"
               type="text"
               value={this.state.usuario.nome}
-              onChange={this.handleNome}
+              onChange={e=>{this.handleChange(e,'nome')}}
               style={{ width: "90vw" }}
             />
 
@@ -103,8 +111,8 @@ class CadastroCliente extends Component {
               label="CPF*"
               margin="normal"
               type="text"
-              value={this.state.cpf}
-              onChange = {this.handleChange('cpf')}
+              value={this.state.usuario.cpf}
+              onChange={e=>{this.handleChange(e,'cpf')}}
               style={{ width: "30vw", paddingRight: '0px' }}
             />
 
@@ -113,8 +121,8 @@ class CadastroCliente extends Component {
               label="RG*"
               margin="normal"
               type="text"
-              value={this.state.rg}
-              onChange = {this.handleChange('rg')}
+              value={this.state.usuario.rg}
+              onChange={e=>{this.handleChange(e,'rg')}}
               style={{ width: "30vw" }}
             />
 
@@ -123,8 +131,8 @@ class CadastroCliente extends Component {
               label="Numero do PIS"
               margin="normal"
               type="text"
-              value={this.state.pis}
-              onChange = {this.handleChange('pis')}
+              value={this.state.usuario.pis}
+              onChange={e=>{this.handleChange(e,'pis')}}
               style={{ width: "90vw" }}
             />
 
@@ -133,7 +141,8 @@ class CadastroCliente extends Component {
               label="Numero da Carteira de Trabalho"
               margin="normal"
               type="text"
-              value={this.state.carteira_trabalho}
+              value={this.state.usuario.carteira_trabalho}
+              onChange={e=>{this.handleChange(e,'carteira_trabalho')}}
               style={{ width: "90vw" }}
             /><br />
 
@@ -143,8 +152,8 @@ class CadastroCliente extends Component {
               label="CEP*"
               margin="normal"
               type="text"
-              value={this.state.cep}
-              onChange = {this.handleChange('cep')}
+              value={this.state.usuario.cep}
+              onChange={e=>{this.handleChange(e,'cep')}}
               style={{ width: "90vw" }}
             />
 
@@ -153,18 +162,18 @@ class CadastroCliente extends Component {
               label="Logradouro*"
               margin="normal"
               type="text"
-              value={this.state.logradouro}
+              value={this.state.usuario.logradouro}
               onChange = {this.handleChange('logradouro')}
               style={{ width: "90vw" }}
             />
 
             <TextField
               id="nomeRua"
-              label="nomeRua*"
+              label="Nome Rua*"
               margin="normal"
               type="text"
-              value={this.state.nomeRua}
-              onChange = {this.handleChange('nomeRua')}
+              value={this.state.usuario.nomeRua}
+              onChange={e=>{this.handleChange(e,'nomeRua')}}
               style={{ width: "90vw" }}
             />
 
@@ -173,18 +182,18 @@ class CadastroCliente extends Component {
               label="Número*"
               margin="normal"
               type="text"
-              value={this.state.numero}
-              onChange = {this.handleChange('numero')}
+              value={this.state.usuario.numero}
+              onChange={e=>{this.handleChange(e,'numero')}}
               style={{ width: "15vw" }}
             />
 
             <TextField
               id="complemento"
-              label="complemento*"
+              label="Complemento*"
               margin="normal"
               type="text"
-              value={this.state.complemento}
-              onChange = {this.handleChange('complemento')}
+              value={this.state.usuario.complemento}
+              onChange={e=>{this.handleChange(e,'complemento')}}
               style={{ width: "60vw" }}
             />
 
@@ -193,8 +202,8 @@ class CadastroCliente extends Component {
               label="Cidade*"
               margin="normal"
               type="text"
-              value={this.state.cidade}
-              onChange = {this.handleChange('cidade')}
+              value={this.state.usuario.cidade}
+              onChange={e=>{this.handleChange(e,'cidade')}}
               style={{ width: "38vw" }}
             />
 
@@ -203,8 +212,8 @@ class CadastroCliente extends Component {
               label="Estado*"
               margin="normal"
               type="text"
-              value={this.state.UF}
-              onChange = {this.handleChange('UF')}
+              value={this.state.usuario.UF}
+              onChange={e=>{this.handleChange(e,'UF')}}
               style={{ width: "15vw" }}
             />
 
@@ -212,21 +221,21 @@ class CadastroCliente extends Component {
 
             <TextField
               id="telefoneResidencial"
-              label="Telefone telefoneResidencial*"
+              label="Telefone Residencial*"
               margin="normal"
               type="text"
-              value={this.state.telefoneResidencial}
-              onChange = {this.handleChange('telefoneResidencial')}
+              value={this.state.usuario.telefoneResidencial}
+              onChange={e=>{this.handleChange(e,'telefoneResidencial')}}
               style={{ width: "90vw" }}
             />
 
             <TextField
               id="telefoneComercial"
-              label="Telefone telefoneComercial*"
+              label="Telefone Comercial*"
               margin="normal"
               type="text"
-              value={this.state.telefoneComercial}
-              onChange = {this.handleChange('telefoneComercial')}
+              value={this.state.usuario.telefoneComercial}
+              onChange={e=>{this.handleChange(e,'telefoneComercial')}}
               style={{ width: "90vw" }}
             />
 
@@ -235,8 +244,8 @@ class CadastroCliente extends Component {
               label="Celular*"
               margin="normal"
               type="text"
-              value={this.state.celular}
-              onChange = {this.handleChange('celular')}
+              value={this.state.usuario.celular}
+              onChange={e=>{this.handleChange(e,'celular')}}
               style={{ width: "90vw" }}
             />
 
@@ -245,8 +254,8 @@ class CadastroCliente extends Component {
               label="E-mail*"
               margin="normal"
               type="email"
-              value={this.state.email}
-              onChange = {this.handleChange('email')}
+              value={this.state.usuario.email}
+              onChange={e=>{this.handleChange(e,'email')}}
               style={{ width: "90vw" }}
             />
 
@@ -261,7 +270,6 @@ class CadastroCliente extends Component {
             </div>
           </form>
         </div>
-
       </div>
     )
   }

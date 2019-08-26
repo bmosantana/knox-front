@@ -8,238 +8,245 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import "./css/modalEditarcliente.css";
 
 class ModalEditarCliente extends Component {
-    constructor(props) {
-        super(props)
-        this.state={
-          editmodal: false,
-          cancelState: false,
+  constructor(props) {
+    super(props)
+    this.state = {
+      editmodal: false,
+      cancelState: false,
 
-          usuario:{
-            nome: '',
-            cpf: '',
-            rg: '',
-            pis: '',
-            carteira_trabalho: '',
-            
-            cep: '',
-            logradouro: '',
-            nomeRua: '',
-            complemento: '',
-            numero: '',
-            cidade: '',
-            UF: '',
-            
-            telefoneResidencial: '',
-            telefoneComercial: '',
-            email: '',
-            celular: ''
-          }
-        }   
+      usuario: {
+        nome: '',
+        cpf: '',
+        rg: '',
+        pis: '',
+        carteira_trabalho: '',
+
+        cep: '',
+        logradouro: '',
+        nomeRua: '',
+        complemento: '',
+        numero: '',
+        cidade: '',
+        UF: '',
+
+        telefoneResidencial: '',
+        telefoneComercial: '',
+        email: '',
+        celular: ''
+      }
     }
+  }
 
-    handleChange = props => event => {
-      this.setState({ [props]: event.target.value });
-    };
-
-    handleClose = () =>{
-      this.setState({editmodal: false});
+  handleChange = (event, prop) => {
+    //console.log(props)
+    //console.log(event.nativeEvent.data)
+    let obj = this.state.usuario
+    if (event.nativeEvent != null) {
+      obj[prop] += event.nativeEvent.data
+      this.setState({ usuario: obj });
     }
+  };
 
-    render() {
-        return (
-            <div>
-                <Dialog
-                    open={this.props.editmodal}
-                    onClose={this.handleClose}
-                    scroll="paper"
-                    aria-labelledby="scroll-dialog-title"
-                    
-                >
-                    <DialogTitle id="scroll-dialog-title">Editar Cliente</DialogTitle>
-                    <DialogContent>      
-                    <form method="get" onSubmit={this.handleSubmit} className="form-style">
-                      {/* Div que contem os primeiros campos */}
+  handleClose = () => {
+    this.setState({ editmodal: false });
+  }
 
-                      {/* Campo de Nome */}
-                      <p className="desc-cad">Dados Pessoais</p>
-                      <TextField
-                        className="textfield-cli"
-                        id="nome"
-                        label="Nome*"
-                        margin="normal"
-                        type="text"
-                        value={this.state.nome}
-                        onChange = {this.handleChange('nome')}
-                        style={{ width: "50vw" }}
-                      />
+  render() {
+    return (
+      <div>
+        <Dialog
+          open={this.props.editmodal}
+          onClose={this.handleClose}
+          scroll="paper"
+          aria-labelledby="scroll-dialog-title"
 
-                      <TextField
-                        id="cpf"
-                        label="CPF*"
-                        margin="normal"
-                        type="text"
-                        value={this.state.cpf}
-                        onChange = {this.handleChange('cpf')}
-                        style={{ width: "50vw"}}
-                      />
+        >
+          <DialogTitle id="scroll-dialog-title">Editar Cliente</DialogTitle>
+          <DialogContent>
+            <form method="get" onSubmit={this.handleSubmit} className="form-style">
+              {/* Div que contem os primeiros campos */}
 
-                      <TextField
-                        id="rg"
-                        label="RG*"
-                        margin="normal"
-                        type="text"
-                        value={this.state.rg}
-                        onChange = {this.handleChange('rg')}
-                        style={{ width: "50vw" }}
-                      />
+              {/* Campo de Nome */}
+              <p className="desc-cad">Dados Pessoais</p>
+              <TextField
+                className="textfield-cli"
+                id="nome"
+                label="Nome*"
+                margin="normal"
+                type="text"
+                value={this.state.usuario.nome}
+                onChange={e => { this.handleChange(e, 'nome') }}
+                style={{ width: "90vw" }}
+              />
 
-                      <TextField
-                        id="pis"
-                        label="Numero do PIS"
-                        margin="normal"
-                        type="text"
-                        value={this.state.pis}
-                        onChange = {this.handleChange('pis')}
-                        style={{ width: "50vw" }}
-                      />
+              <TextField
+                id="cpf"
+                label="CPF*"
+                margin="normal"
+                type="text"
+                value={this.state.usuario.cpf}
+                onChange={e => { this.handleChange(e, 'cpf') }}
+                style={{ width: "30vw", paddingRight: '0px' }}
+              />
 
-                      <TextField
-                        id="carteira_trabalho"
-                        label="Numero da Carteira de Trabalho"
-                        margin="normal"
-                        type="text"
-                        value={this.state.carteira_trabalho}
-                        style={{ width: "50vw" }}
-                      /><br />
+              <TextField
+                id="rg"
+                label="RG*"
+                margin="normal"
+                type="text"
+                value={this.state.usuario.rg}
+                onChange={e => { this.handleChange(e, 'rg') }}
+                style={{ width: "30vw" }}
+              />
 
-                      <p className="desc-cad marg-desc">Endereço</p>
-                      <TextField
-                        id="cep"
-                        label="CEP*"
-                        margin="normal"
-                        type="text"
-                        value={this.state.cep}
-                        onChange = {this.handleChange('cep')}
-                        style={{ width: "50vw" }}
-                      />
+              <TextField
+                id="pis"
+                label="Numero do PIS"
+                margin="normal"
+                type="text"
+                value={this.state.usuario.pis}
+                onChange={e => { this.handleChange(e, 'pis') }}
+                style={{ width: "90vw" }}
+              />
 
-                      <TextField
-                        id="logradouro"
-                        label="Logradouro*"
-                        margin="normal"
-                        type="text"
-                        value={this.state.logradouro}
-                        onChange = {this.handleChange('logradouro')}
-                        style={{ width: "50vw" }}
-                      />
+              <TextField
+                id="carteira_trabalho"
+                label="Numero da Carteira de Trabalho"
+                margin="normal"
+                type="text"
+                value={this.state.usuario.carteira_trabalho}
+                onChange={e => { this.handleChange(e, 'carteira_trabalho') }}
+                style={{ width: "90vw" }}
+              /><br />
 
-                      <TextField
-                        id="nomeRua"
-                        label="nomeRua*"
-                        margin="normal"
-                        type="text"
-                        value={this.state.nomeRua}
-                        onChange = {this.handleChange('nomeRua')}
-                        style={{ width: "50vw" }}
-                      />
+              <p className="desc-cad marg-desc">Endereço</p>
+              <TextField
+                id="cep"
+                label="CEP*"
+                margin="normal"
+                type="text"
+                value={this.state.usuario.cep}
+                onChange={e => { this.handleChange(e, 'cep') }}
+                style={{ width: "90vw" }}
+              />
 
-                      <TextField
-                        id="numero"
-                        label="Número*"
-                        margin="normal"
-                        type="text"
-                        value={this.state.numero}
-                        onChange = {this.handleChange('numero')}
-                        style={{ width: "50vw" }}
-                      />
+              <TextField
+                id="logradouro"
+                label="Logradouro*"
+                margin="normal"
+                type="text"
+                value={this.state.usuario.logradouro}
+                onChange={this.handleChange('logradouro')}
+                style={{ width: "90vw" }}
+              />
 
-                      <TextField
-                        id="complemento"
-                        label="complemento*"
-                        margin="normal"
-                        type="text"
-                        value={this.state.complemento}
-                        onChange = {this.handleChange('complemento')}
-                        style={{ width: "50vw" }}
-                      />
+              <TextField
+                id="nomeRua"
+                label="Nome Rua*"
+                margin="normal"
+                type="text"
+                value={this.state.usuario.nomeRua}
+                onChange={e => { this.handleChange(e, 'nomeRua') }}
+                style={{ width: "90vw" }}
+              />
 
-                      <TextField
-                        id="cidade"
-                        label="Cidade*"
-                        margin="normal"
-                        type="text"
-                        value={this.state.cidade}
-                        onChange = {this.handleChange('cidade')}
-                        style={{ width: "50vw" }}
-                      />
+              <TextField
+                id="numero"
+                label="Número*"
+                margin="normal"
+                type="text"
+                value={this.state.usuario.numero}
+                onChange={e => { this.handleChange(e, 'numero') }}
+                style={{ width: "15vw" }}
+              />
 
-                      <TextField
-                        id="UF"
-                        label="Estado*"
-                        margin="normal"
-                        type="text"
-                        value={this.state.UF}
-                        onChange = {this.handleChange('UF')}
-                        style={{ width: "50vw" }}
-                      />
+              <TextField
+                id="complemento"
+                label="Complemento*"
+                margin="normal"
+                type="text"
+                value={this.state.usuario.complemento}
+                onChange={e => { this.handleChange(e, 'complemento') }}
+                style={{ width: "60vw" }}
+              />
 
-                      <p className="desc-cad marg-desc">Contato</p>
+              <TextField
+                id="cidade"
+                label="Cidade*"
+                margin="normal"
+                type="text"
+                value={this.state.usuario.cidade}
+                onChange={e => { this.handleChange(e, 'cidade') }}
+                style={{ width: "38vw" }}
+              />
 
-                      <TextField
-                        id="telefoneResidencial"
-                        label="Telefone telefoneResidencial*"
-                        margin="normal"
-                        type="text"
-                        value={this.state.telefoneResidencial}
-                        onChange = {this.handleChange('telefoneResidencial')}
-                        style={{ width: "50vw" }}
-                      />
+              <TextField
+                id="UF"
+                label="Estado*"
+                margin="normal"
+                type="text"
+                value={this.state.usuario.UF}
+                onChange={e => { this.handleChange(e, 'UF') }}
+                style={{ width: "15vw" }}
+              />
 
-                      <TextField
-                        id="telefoneComercial"
-                        label="Telefone telefoneComercial*"
-                        margin="normal"
-                        type="text"
-                        value={this.state.telefoneComercial}
-                        onChange = {this.handleChange('telefoneComercial')}
-                        style={{ width: "50vw" }}
-                      />
+              <p className="desc-cad marg-desc">Contato</p>
 
-                      <TextField
-                        id="celular"
-                        label="Celular*"
-                        margin="normal"
-                        type="text"
-                        value={this.state.celular}
-                        onChange = {this.handleChange('celular')}
-                        style={{ width: "50vw" }}
-                      />
+              <TextField
+                id="telefoneResidencial"
+                label="Telefone Residencial*"
+                margin="normal"
+                type="text"
+                value={this.state.usuario.telefoneResidencial}
+                onChange={e => { this.handleChange(e, 'telefoneResidencial') }}
+                style={{ width: "90vw" }}
+              />
 
-                      <TextField
-                        id="email"
-                        label="E-mail*"
-                        margin="normal"
-                        type="email"
-                        value={this.state.email}
-                        onChange = {this.handleChange('email')}
-                        style={{ width: "50vw" }}
-                      />
-                    </form>
+              <TextField
+                id="telefoneComercial"
+                label="Telefone Comercial*"
+                margin="normal"
+                type="text"
+                value={this.state.usuario.telefoneComercial}
+                onChange={e => { this.handleChange(e, 'telefoneComercial') }}
+                style={{ width: "90vw" }}
+              />
 
-                    </DialogContent>
-                    <DialogActions>
-                        <Button variant="contained" color="primary" className="btn">
-                          Cancelar
+              <TextField
+                id="celular"
+                label="Celular*"
+                margin="normal"
+                type="text"
+                value={this.state.usuario.celular}
+                onChange={e => { this.handleChange(e, 'celular') }}
+                style={{ width: "90vw" }}
+              />
+
+              <TextField
+                id="email"
+                label="E-mail*"
+                margin="normal"
+                type="email"
+                value={this.state.usuario.email}
+                onChange={e => { this.handleChange(e, 'email') }}
+                style={{ width: "90vw" }}
+              />
+            </form>
+
+          </DialogContent>
+          <DialogActions>
+            <Button variant="contained" color="primary" className="btn">
+              Cancelar
                         </Button>
 
-                        <Button variant="contained" color="primary" className="btn">
-                          Enviar
+            <Button variant="contained" color="primary" className="btn">
+              Enviar
                         </Button>
-                      </DialogActions>
-                </Dialog>
-            </div>
-        );
-    }
+          </DialogActions>
+        </Dialog>
+      </div>
+    );
+  }
 }
 
 export default ModalEditarCliente;
