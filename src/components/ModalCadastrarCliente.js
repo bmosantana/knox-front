@@ -7,6 +7,8 @@ import TextField from '@material-ui/core/TextField';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import "./css/modalEditarcliente.css";
 
+const enderecoApi = "https://knoxapp180120.herokuapp.com/";
+
 class ModalCadastrarCliente extends Component {
     constructor(props) {
         super(props)
@@ -63,28 +65,66 @@ class ModalCadastrarCliente extends Component {
 
     handleSubmit = (event) => {
         let usuario = this.state.usuario;
-        alert(usuario)
+        alert(
+        usuario.nome + "/n" +
+        usuario.cpf + "/n" +
+        usuario.rg + "/n" +
+        usuario.pis + "/n" +
+        usuario.carteira_trabalho + "/n" +
+        usuario.cep+ "/n" +
+        usuario.logradouro+ "/n" +
+        usuario.nomeRua+ "/n" +
+        usuario.complemento+ "/n" +
+        usuario.numero+ "/n" +
+        usuario.cidade+ "/n" +
+        usuario.UF+ "/n" +
+        usuario.telefoneResidencial+ "/n" +
+        usuario.telefoneComercial+ "/n" +
+        usuario.email+ "/n" +
+        usuario.celular)
 
     };
 
     SendApiData = () => {
-        // fetch( enderecoApi + "cliente", {
-        //   method: "POST",
-        //   headers: {
-        //     'Accept': 'application/json',
-        //     'Content-Type': 'application/json'
-        //   },
-        //   body: JSON.stringify(usuario)
-        // })
-        // .then((response) => {
-        //   if(response !== 200){
-        //     alert("Verifique se os dados estão corretos entes de finalizar o seu cadastro.")
-        //   }else{
-        //     alert("Cadastro realizado com SUCESSO.")
-        //   }
-        //   return response.json();
-        // });
+
+        let usuario = this.state.usuario;
+
+        fetch( enderecoApi + "cliente", {
+          method: "POST",
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            "nome": usuario.nome,
+            "cpf": usuario.cpf,
+            "rg" : usuario.rg,
+            "cep": usuario.cep,
+            "logradouro" : usuario.logradouro,
+            "nomeRua": usuario.nomeRua,
+            "numero": usuario.numero,
+            "complemento" : usuario.complemento,
+            "cidade" : usuario.cidade,
+            "UF": usuario.UF,
+            "telefoneResidencial": usuario.telefoneResidencial,
+            "telefoneComercial": usuario.telefoneComercial,
+            "celular" : usuario.celular,
+            "email" : usuario.email,
+            "pis" : usuario.pis,
+            "carteira_trabalho" : usuario.carteira_trabalho
+        
+          })
+        })
+        .then((response) => {
+          if(response !== 200){
+            alert("Verifique se os dados estão corretos entes de finalizar o seu cadastro.")
+          }else{
+            alert("Cadastro realizado com SUCESSO.")
+          }
+          return response.json();
+        });
     }
+    
     handleClose = () => {
         this.setState({ editmodal: false });
     }
@@ -172,7 +212,7 @@ class ModalCadastrarCliente extends Component {
                                 margin="normal"
                                 type="text"
                                 value={this.state.usuario.logradouro}
-                                onChange={this.handleChange('logradouro')}
+                                onChange={ e => {this.handleChange(e, 'logradouro')}}
                                 style={{ width: "90vw" }}
                             />
 
