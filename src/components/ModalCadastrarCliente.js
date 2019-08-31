@@ -39,25 +39,127 @@ class ModalCadastrarCliente extends Component {
 
     }
 
-    // componentWillReceiveProps(newProps) {
-    //     this.setState({modalState: newProps.modalState})
-    // };
-    handleNome(event) {
+    handleChangeNome = (event) => {
         let usuario = this.state.usuario;
-        usuario.nome = event.target.value;
-
-        console.log(usuario.nome);
-    }
-
-    handleChange = (event, prop) => {
-        //console.log(props)
-        //console.log(event.nativeEvent.data)
-        let obj = this.state.usuario
-        if (event.nativeEvent != null) {
-            obj[prop] += event.nativeEvent.data
-            this.setState({ usuario: obj });
-        }
+        usuario.nome += event.nativeEvent.data;
+        this.setState({ usuario: usuario });
+        
     };
+
+    handleChangeCpf = (event) => {
+        let usuario = this.state.usuario;
+        usuario.cpf += event.nativeEvent.data;
+        this.setState({ usuario: usuario });
+        
+    };
+
+    handleChangeRg = (event) => {
+        let usuario = this.state.usuario;
+        usuario.rg += event.nativeEvent.data;
+        this.setState({ usuario: usuario });
+        
+    };
+
+    handleChangePis = (event) => {
+        let usuario = this.state.usuario;
+        usuario.pis += event.nativeEvent.data;
+        this.setState({ usuario: usuario });
+        
+    };
+
+    handleChangeCarteiraTrabalho = (event) => {
+        let usuario = this.state.usuario;
+        usuario.carteira_trabalho += event.nativeEvent.data;
+        this.setState({ usuario: usuario });
+        
+    };
+
+    handleChangeCep = (event) => {
+        let usuario = this.state.usuario;
+        usuario.cep += event.nativeEvent.data;
+        this.setState({ usuario: usuario });
+        
+    };
+
+    handleChangeLogradouro = (event) => {
+        let usuario = this.state.usuario;
+        usuario.logradouro += event.nativeEvent.data;
+        this.setState({ usuario: usuario });
+        
+    };
+
+    handleChangeNomeRua = (event) => {
+        let usuario = this.state.usuario;
+        usuario.nomeRua += event.nativeEvent.data;
+        this.setState({ usuario: usuario });
+        
+    };
+
+    handleChangeComplemento = (event) => {
+        let usuario = this.state.usuario;
+        usuario.complemento += event.nativeEvent.data;
+        this.setState({ usuario: usuario });
+        
+    };
+
+    handleChangeNumero = (event) => {
+        let usuario = this.state.usuario;
+        usuario.numero += event.nativeEvent.data;
+        this.setState({ usuario: usuario });
+        
+    };
+
+    handleChangeCidade = (event) => {
+        let usuario = this.state.usuario;
+        usuario.cidade += event.nativeEvent.data;
+        this.setState({ usuario: usuario });
+        
+    };
+
+    handleChangeUf = (event) => {
+        let usuario = this.state.usuario;
+        usuario.UF += event.nativeEvent.data;
+        this.setState({ usuario: usuario });
+        
+    };
+
+    handleChangeTelefoneResidencial = (event) => {
+        let usuario = this.state.usuario;
+        usuario.telefoneResidencial += event.nativeEvent.data;
+        this.setState({ usuario: usuario });
+        
+    };
+
+    handleChangeTelefoneComercial = (event) => {
+        let usuario = this.state.usuario;
+        usuario.telefoneComercial += event.nativeEvent.data;
+        this.setState({ usuario: usuario });
+        
+    };
+
+    handleChangeEmail = (event) => {
+        let usuario = this.state.usuario;
+        usuario.email += event.nativeEvent.data;
+        this.setState({ usuario: usuario });
+        
+    };
+
+    handleChangeCelular = (event) => {
+        let usuario = this.state.usuario;
+        usuario.celular += event.nativeEvent.data;
+        this.setState({ usuario: usuario });
+        
+    };
+
+    // handleChange = (event, prop) => {
+    //     //console.log(props)
+    //     //console.log(event.nativeEvent.data)
+    //     let obj = this.state.usuario
+    //     if (event.nativeEvent != null) {
+    //         obj[prop] += event.nativeEvent.data
+    //         this.setState({ usuario: obj });
+    //     }
+    // };
 
     handleClose = () => {
         this.setState({ createmodal: false });
@@ -65,23 +167,25 @@ class ModalCadastrarCliente extends Component {
 
     handleSubmit = (event) => {
         let usuario = this.state.usuario;
-        alert(
-        usuario.nome + "/n" +
-        usuario.cpf + "/n" +
-        usuario.rg + "/n" +
-        usuario.pis + "/n" +
-        usuario.carteira_trabalho + "/n" +
-        usuario.cep+ "/n" +
-        usuario.logradouro+ "/n" +
-        usuario.nomeRua+ "/n" +
-        usuario.complemento+ "/n" +
-        usuario.numero+ "/n" +
-        usuario.cidade+ "/n" +
-        usuario.UF+ "/n" +
-        usuario.telefoneResidencial+ "/n" +
-        usuario.telefoneComercial+ "/n" +
-        usuario.email+ "/n" +
-        usuario.celular)
+        // alert(
+        // usuario.nome + "\n" +
+        // usuario.cpf + "\n" +
+        // usuario.rg + "\n" +
+        // usuario.pis + "\n" +
+        // usuario.carteira_trabalho + "\n" +
+        // usuario.cep+ "\n" +
+        // usuario.logradouro+ "\n" +
+        // usuario.nomeRua+ "\n" +
+        // usuario.complemento+ "\n" +
+        // usuario.numero+ "\n" +
+        // usuario.cidade+ "\n" +
+        // usuario.UF+ "\n" +
+        // usuario.telefoneResidencial+ "\n" +
+        // usuario.telefoneComercial+ "\n" +
+        // usuario.email+ "\n" +
+        // usuario.celular)
+
+        console.log(this.state.usuario);
 
     };
 
@@ -151,8 +255,8 @@ class ModalCadastrarCliente extends Component {
                                 margin="normal"
                                 type="text"
                                 value={this.state.usuario.nome}
-                                onChange={e => { this.handleChange(e, 'nome') }}
-                                style={{ width: "90vw" }}
+                                onChange={e => { this.handleChangeNome(e) }}
+                                style={{ width: "50vw" }}
                             />
 
                             <TextField
@@ -161,8 +265,8 @@ class ModalCadastrarCliente extends Component {
                                 margin="normal"
                                 type="text"
                                 value={this.state.usuario.cpf}
-                                onChange={e => { this.handleChange(e, 'cpf') }}
-                                style={{ width: "30vw", paddingRight: '0px' }}
+                                onChange={e => { this.handleChangeCpf(e) }}
+                                style={{ width: "50vw"}}
                             />
 
                             <TextField
@@ -171,8 +275,8 @@ class ModalCadastrarCliente extends Component {
                                 margin="normal"
                                 type="text"
                                 value={this.state.usuario.rg}
-                                onChange={e => { this.handleChange(e, 'rg') }}
-                                style={{ width: "30vw" }}
+                                onChange={e => { this.handleChangeRg(e) }}
+                                style={{ width: "50vw" }}
                             />
 
                             <TextField
@@ -181,8 +285,8 @@ class ModalCadastrarCliente extends Component {
                                 margin="normal"
                                 type="text"
                                 value={this.state.usuario.pis}
-                                onChange={e => { this.handleChange(e, 'pis') }}
-                                style={{ width: "90vw" }}
+                                onChange={e => { this.handleChangePis(e) }}
+                                style={{ width: "50vw" }}
                             />
 
                             <TextField
@@ -191,8 +295,8 @@ class ModalCadastrarCliente extends Component {
                                 margin="normal"
                                 type="text"
                                 value={this.state.usuario.carteira_trabalho}
-                                onChange={e => { this.handleChange(e, 'carteira_trabalho') }}
-                                style={{ width: "90vw" }}
+                                onChange={e => { this.handleChangeCarteiraTrabalho(e) }}
+                                style={{ width: "50vw" }}
                             /><br />
 
                             <p className="desc-cad marg-desc">Endereço</p>
@@ -202,8 +306,8 @@ class ModalCadastrarCliente extends Component {
                                 margin="normal"
                                 type="text"
                                 value={this.state.usuario.cep}
-                                onChange={e => { this.handleChange(e, 'cep') }}
-                                style={{ width: "90vw" }}
+                                onChange={e => { this.handleChangeCep(e) }}
+                                style={{ width: "50vw" }}
                             />
 
                             <TextField
@@ -212,8 +316,8 @@ class ModalCadastrarCliente extends Component {
                                 margin="normal"
                                 type="text"
                                 value={this.state.usuario.logradouro}
-                                onChange={ e => {this.handleChange(e, 'logradouro')}}
-                                style={{ width: "90vw" }}
+                                onChange={ e => {this.handleChangeLogradouro(e)}}
+                                style={{ width: "50vw" }}
                             />
 
                             <TextField
@@ -222,8 +326,8 @@ class ModalCadastrarCliente extends Component {
                                 margin="normal"
                                 type="text"
                                 value={this.state.usuario.nomeRua}
-                                onChange={e => { this.handleChange(e, 'nomeRua') }}
-                                style={{ width: "90vw" }}
+                                onChange={e => { this.handleChangeNomeRua(e) }}
+                                style={{ width: "50vw" }}
                             />
 
                             <TextField
@@ -232,8 +336,8 @@ class ModalCadastrarCliente extends Component {
                                 margin="normal"
                                 type="text"
                                 value={this.state.usuario.numero}
-                                onChange={e => { this.handleChange(e, 'numero') }}
-                                style={{ width: "15vw" }}
+                                onChange={e => { this.handleChangeNumero(e) }}
+                                style={{ width: "50vw" }}
                             />
 
                             <TextField
@@ -242,8 +346,8 @@ class ModalCadastrarCliente extends Component {
                                 margin="normal"
                                 type="text"
                                 value={this.state.usuario.complemento}
-                                onChange={e => { this.handleChange(e, 'complemento') }}
-                                style={{ width: "60vw" }}
+                                onChange={e => { this.handleChangeComplemento(e) }}
+                                style={{ width: "50vw" }}
                             />
 
                             <TextField
@@ -252,8 +356,8 @@ class ModalCadastrarCliente extends Component {
                                 margin="normal"
                                 type="text"
                                 value={this.state.usuario.cidade}
-                                onChange={e => { this.handleChange(e, 'cidade') }}
-                                style={{ width: "38vw" }}
+                                onChange={e => { this.handleChangeCidade(e) }}
+                                style={{ width: "50vw" }}
                             />
 
                             <TextField
@@ -262,8 +366,8 @@ class ModalCadastrarCliente extends Component {
                                 margin="normal"
                                 type="text"
                                 value={this.state.usuario.UF}
-                                onChange={e => { this.handleChange(e, 'UF') }}
-                                style={{ width: "15vw" }}
+                                onChange={e => { this.handleChangeUf(e) }}
+                                style={{ width: "50vw" }}
                             />
 
                             <p className="desc-cad marg-desc">Contato</p>
@@ -274,8 +378,8 @@ class ModalCadastrarCliente extends Component {
                                 margin="normal"
                                 type="text"
                                 value={this.state.usuario.telefoneResidencial}
-                                onChange={e => { this.handleChange(e, 'telefoneResidencial') }}
-                                style={{ width: "90vw" }}
+                                onChange={e => { this.handleChangeTelefoneResidencial(e) }}
+                                style={{ width: "50vw" }}
                             />
 
                             <TextField
@@ -284,8 +388,8 @@ class ModalCadastrarCliente extends Component {
                                 margin="normal"
                                 type="text"
                                 value={this.state.usuario.telefoneComercial}
-                                onChange={e => { this.handleChange(e, 'telefoneComercial') }}
-                                style={{ width: "90vw" }}
+                                onChange={e => { this.handleChangeTelefoneComercial(e) }}
+                                style={{ width: "50vw" }}
                             />
 
                             <TextField
@@ -294,8 +398,8 @@ class ModalCadastrarCliente extends Component {
                                 margin="normal"
                                 type="text"
                                 value={this.state.usuario.celular}
-                                onChange={e => { this.handleChange(e, 'celular') }}
-                                style={{ width: "90vw" }}
+                                onChange={e => { this.handleChangeCelular(e) }}
+                                style={{ width: "50vw" }}
                             />
 
                             <TextField
@@ -304,8 +408,8 @@ class ModalCadastrarCliente extends Component {
                                 margin="normal"
                                 type="email"
                                 value={this.state.usuario.email}
-                                onChange={e => { this.handleChange(e, 'email') }}
-                                style={{ width: "90vw" }}
+                                onChange={e => { this.handleChangeEmail(e) }}
+                                style={{ width: "50vw" }}
                             />
                         </form>
                     </DialogContent>
