@@ -63,6 +63,14 @@ class Cliente extends Component {
     window.location.href = "/cadastroCliente"
   };
 
+  handleCloseCadastrarCliente = () => {
+    this.setState({createmodal: false});
+  }
+
+  handleCloseEditarCliente = () => {
+    this.setState({editmodal: false});
+  }
+
 
   render() {
     return (
@@ -208,8 +216,8 @@ class Cliente extends Component {
           </DialogActions>
         </Dialog>
 
-        <ModalEditarCliente editmodal={this.state.editmodal} />
-        <ModalCadastrarCliente createmodal={this.state.createmodal} click={(() => {this.setState({ createmodal: !this.state.createmodal }) })}/>
+        <ModalEditarCliente  handleClose={this.handleCloseEditarCliente} editmodal={this.state.editmodal} click={(() => {this.setState({ editmodal: !this.state.editmodal }) }) }/>
+        <ModalCadastrarCliente handleClose={this.handleCloseCadastrarCliente} createmodal={this.state.createmodal} click={(() => {this.setState({ createmodal: !this.state.createmodal }) })}/>
       </div>
 
     )

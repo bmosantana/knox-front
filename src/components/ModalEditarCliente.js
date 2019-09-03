@@ -11,9 +11,6 @@ class ModalEditarCliente extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      editmodal: false,
-      cancelState: false,
-
       usuario: {
         nome: '',
         cpf: '',
@@ -153,12 +150,17 @@ class ModalEditarCliente extends Component {
     this.setState({ editmodal: false });
   }
 
+  handleSubmit = (event) =>{
+    let user = this.state.usuario;
+
+    console.log(user);
+  }
   render() {
     return (
       <div>
         <Dialog
           open={this.props.editmodal}
-          onClose={this.handleClose}
+          onClose={this.props.handleClose}
           scroll="paper"
           aria-labelledby="scroll-dialog-title"
 
@@ -335,13 +337,13 @@ class ModalEditarCliente extends Component {
 
           </DialogContent>
           <DialogActions>
-            <Button variant="contained" color="primary" className="btn">
+            <Button variant="contained" color="primary" className="btn" onClick={this.props.handleClose}>
               Cancelar
-                        </Button>
+            </Button>
 
-            <Button variant="contained" color="primary" className="btn">
+            <Button variant="contained" color="primary" className="btn" type="submit" value="Submit" onClick={this.handleSubmit}>
               Enviar
-                        </Button>
+            </Button>
           </DialogActions>
         </Dialog>
       </div>
