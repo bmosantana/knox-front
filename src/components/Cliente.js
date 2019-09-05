@@ -7,10 +7,6 @@ import IconButton from '@material-ui/core/IconButton';
 import Input from '@material-ui/core/Input';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { Icon } from '@material-ui/core';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import ModalEditarCliente from './ModalEditarCliente.js';
 import Dialog from '@material-ui/core/Dialog';
@@ -19,13 +15,17 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import ModalCadastrarCliente from './ModalCadastrarCliente.js';
+import IntercessoraListagemCliente from './IntercessoraListagemCliente.js';
 
+
+const enderecoApi = "https://knoxapp180120.herokuapp.com/";
 
 class Cliente extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
+      tableData: [],
       modalStateAdd: false,
       editmodal: false,
       createmodal: false,
@@ -33,6 +33,29 @@ class Cliente extends Component {
     }
     // // Bind, utilizado para o método enxergar o "this"
     // this.handleModal = this.handleModal.bind(this)
+  }
+
+  componentWillMount() {
+    this.loadList();
+  }
+
+  loadList() {
+    fetch( enderecoApi + "cliente", {
+      method: "GET",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then((response) => { 
+      if(response.status !== 200){
+        console.log("Verifique se os dados estão corretos entes de finalizar o seu cadastro.")
+      }else{
+        console.log("GET realizado com SUCESSO.")
+      }
+
+      return response.json() })
+    .then((resultado => this.setState({ tableData: resultado })));
   }
 
   handlePesquisa = () => {
@@ -73,6 +96,11 @@ class Cliente extends Component {
 
 
   render() {
+    let listDisplay;
+    if (this.state.tableData.length > 0) {
+      listDisplay = <IntercessoraListagemCliente tableData={this.state.tableData} view={this.handleClick}></IntercessoraListagemCliente>
+    }
+    console.log("table DAta : "+ this.state.tableData);
     return (
       <div>
         <MenuLateral />
@@ -101,87 +129,7 @@ class Cliente extends Component {
           </div>
 
           {/* listagem de fato */}
-          <div id="lista-clientes">
-            <Card style={{ width: "50vw" }}>
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                  Ana Clara Souza
-                              </Typography>
-
-                <Typography component="p">
-                  E-mail: ana@clara.com.br
-                              </Typography>
-
-                <Typography component="p">
-                  Telefone: (11) 1234-56789
-                              </Typography>
-
-              </CardContent>
-              <CardActions id="acoes-card">
-                <IconButton
-                  aria-label="Mudar visualizacao campo"
-                  onClick={this.handleVerMais}
-                >
-                  <Icon style={{ color: "black" }}>more_vert</Icon>
-                </IconButton>
-
-                <IconButton
-                  aria-label="Mudar visualizacao campo"
-                  onClick={this.handleEditar}
-                >
-                  <Icon style={{ color: "black" }}>edit</Icon>
-                </IconButton>
-
-                <IconButton
-                  aria-label="Mudar visualizacao campo"
-                  onClick={this.handleModalDelete}
-                >
-                  <Icon style={{ color: "black" }}>delete</Icon>
-                </IconButton>
-              </CardActions>
-            </Card>
-          </div>
-
-          <div id="lista-clientes">
-            <Card style={{ width: "50vw" }}>
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                  Ligia Duarte
-                              </Typography>
-
-                <Typography component="p">
-                  E-mail: ligia@duarte.com.br
-                              </Typography>
-
-                <Typography component="p">
-                  Telefone: (11) 1234-56789
-                              </Typography>
-
-              </CardContent>
-              <CardActions id="acoes-card">
-                <IconButton
-                  aria-label="Mudar visualizacao campo"
-                  onClick={this.handleVerMais}
-                >
-                  <Icon style={{ color: "black" }}>more_vert</Icon>
-                </IconButton>
-
-                <IconButton
-                  aria-label="Mudar visualizacao campo"
-                  onClick={this.handleEditar}
-                >
-                  <Icon style={{ color: "black" }}>edit</Icon>
-                </IconButton>
-
-                <IconButton
-                  aria-label="Mudar visualizacao campo"
-                  onClick={this.handleModalDelete}
-                >
-                  <Icon style={{ color: "black" }}>delete</Icon>
-                </IconButton>
-              </CardActions>
-            </Card>
-          </div>
+            {listDisplay}
 
           {/* botão para cadastrar mais um cliente */}
           <div id="fab-add">
@@ -215,8 +163,7 @@ class Cliente extends Component {
                       </Button>
           </DialogActions>
         </Dialog>
-
-        <ModalEditarCliente  handleClose={this.handleCloseEditarCliente} editmodal={this.state.editmodal} click={(() => {this.setState({ editmodal: !this.state.editmodal }) }) }/>
+        
         <ModalCadastrarCliente handleClose={this.handleCloseCadastrarCliente} createmodal={this.state.createmodal} click={(() => {this.setState({ createmodal: !this.state.createmodal }) })}/>
       </div>
 

@@ -7,142 +7,168 @@ import TextField from '@material-ui/core/TextField';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import "./css/modalEditarcliente.css";
 
+
+const enderecoApi = "https://knoxapp180120.herokuapp.com/";
+
 class ModalEditarCliente extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      usuario: {
-        nome: '',
-        cpf: '',
-        rg: '',
-        pis: '',
-        carteira_trabalho: '',
-
-        cep: '',
-        logradouro: '',
-        nomeRua: '',
-        complemento: '',
-        numero: '',
-        cidade: '',
-        UF: '',
-
-        telefoneResidencial: '',
-        telefoneComercial: '',
-        email: '',
-        celular: ''
-      }
+      cpfDelete: "",
+      usuario: {}
     }
   }
 
   handleChangeNome = (event) => {
     let usuario = this.state.usuario;
-    usuario.nome += event.nativeEvent.data;
+    usuario.nome = event.target.value;
     this.setState({ usuario: usuario });
 
   };
 
   handleChangeCpf = (event) => {
     let usuario = this.state.usuario;
-    usuario.cpf += event.nativeEvent.data;
+    usuario.cpf = event.target.value;
     this.setState({ usuario: usuario });
 
   };
 
   handleChangeRg = (event) => {
     let usuario = this.state.usuario;
-    usuario.rg += event.nativeEvent.data;
+    usuario.rg = event.target.value;
     this.setState({ usuario: usuario });
 
   };
 
   handleChangePis = (event) => {
     let usuario = this.state.usuario;
-    usuario.pis += event.nativeEvent.data;
+    usuario.pis = event.target.value;
     this.setState({ usuario: usuario });
 
   };
 
   handleChangeCarteiraTrabalho = (event) => {
     let usuario = this.state.usuario;
-    usuario.carteira_trabalho += event.nativeEvent.data;
+    usuario.carteira_trabalho = event.target.value;
     this.setState({ usuario: usuario });
 
   };
 
   handleChangeCep = (event) => {
     let usuario = this.state.usuario;
-    usuario.cep += event.nativeEvent.data;
+    usuario.cep = event.target.value;
     this.setState({ usuario: usuario });
 
   };
 
   handleChangeLogradouro = (event) => {
     let usuario = this.state.usuario;
-    usuario.logradouro += event.nativeEvent.data;
+    usuario.logradouro = event.target.value;
     this.setState({ usuario: usuario });
 
   };
 
   handleChangeNomeRua = (event) => {
     let usuario = this.state.usuario;
-    usuario.nomeRua += event.nativeEvent.data;
+    usuario.nomeRua = event.target.value;
     this.setState({ usuario: usuario });
 
   };
 
   handleChangeComplemento = (event) => {
     let usuario = this.state.usuario;
-    usuario.complemento += event.nativeEvent.data;
+    usuario.complemento = event.target.value;
     this.setState({ usuario: usuario });
 
   };
 
   handleChangeNumero = (event) => {
     let usuario = this.state.usuario;
-    usuario.numero += event.nativeEvent.data;
+    usuario.numero = event.target.value;
     this.setState({ usuario: usuario });
 
   };
 
   handleChangeCidade = (event) => {
     let usuario = this.state.usuario;
-    usuario.cidade += event.nativeEvent.data;
+    usuario.cidade = event.target.value;
     this.setState({ usuario: usuario });
 
   };
 
   handleChangeUf = (event) => {
     let usuario = this.state.usuario;
-    usuario.UF += event.nativeEvent.data;
+    usuario.UF = event.target.value;
     this.setState({ usuario: usuario });
 
   };
 
   handleChangeTelefoneResidencial = (event) => {
     let usuario = this.state.usuario;
-    usuario.telefoneResidencial += event.nativeEvent.data;
+    usuario.telefoneResidencial = event.target.value;
     this.setState({ usuario: usuario });
 
   };
 
   handleChangeTelefoneComercial = (event) => {
     let usuario = this.state.usuario;
-    usuario.telefoneComercial += event.nativeEvent.data;
+    usuario.telefoneComercial = event.target.value;
     this.setState({ usuario: usuario });
 
   };
 
   handleChangeEmail = (event) => {
     let usuario = this.state.usuario;
-    usuario.email += event.nativeEvent.data;
+    usuario.email = event.target.value;
     this.setState({ usuario: usuario });
 
   };
 
   handleChangeCelular = (event) => {
     let usuario = this.state.usuario;
-    usuario.celular += event.nativeEvent.data;
+    usuario.celular = event.target.value;
     this.setState({ usuario: usuario });
+
+  };
+
+  handleSubmit = (event) => {
+    let usuario = this.state.usuario;
+
+    fetch(enderecoApi + "cliente", {
+      method: "PUT",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        "nome": usuario.nome,
+        "cpf": usuario.cpf,
+        "rg": usuario.rg,
+        "cep": usuario.cep,
+        "logradouro": usuario.logradouro,
+        "nomeRua": usuario.nomeRua,
+        "numero": usuario.numero,
+        "complemento": usuario.complemento,
+        "cidade": usuario.cidade,
+        "UF": usuario.UF,
+        "telefoneResidencial": usuario.telefoneResidencial,
+        "telefoneComercial": usuario.telefoneComercial,
+        "celular": usuario.celular,
+        "email": usuario.email,
+        "pis": usuario.pis,
+        "carteira_trabalho": usuario.carteira_trabalho
+
+      })
+    })
+      .then((response) => {
+        if (response.status !== 200) {
+          alert("Status: " + response.status)
+        } else {
+          alert("Foi")
+          this.props.handleClose();
+        }
+        return console.log(response);
+      });
 
   };
 
@@ -150,11 +176,6 @@ class ModalEditarCliente extends Component {
     this.setState({ editmodal: false });
   }
 
-  handleSubmit = (event) =>{
-    let user = this.state.usuario;
-
-    console.log(user);
-  }
   render() {
     return (
       <div>
@@ -177,8 +198,9 @@ class ModalEditarCliente extends Component {
                 margin="normal"
                 type="text"
                 value={this.state.usuario.nome}
+                inputProps={{ maxLength: 60 }}
                 onChange={e => { this.handleChangeNome(e) }}
-                style={{ width: "50vw" }}
+                style={{ width: "100%" }}
               />
 
               <TextField
@@ -188,7 +210,7 @@ class ModalEditarCliente extends Component {
                 type="text"
                 value={this.state.usuario.cpf}
                 onChange={e => { this.handleChangeCpf(e) }}
-                style={{ width: "50vw" }}
+                style={{ width: "100%" }}
               />
 
               <TextField
@@ -198,7 +220,7 @@ class ModalEditarCliente extends Component {
                 type="text"
                 value={this.state.usuario.rg}
                 onChange={e => { this.handleChangeRg(e) }}
-                style={{ width: "50vw" }}
+                style={{ width: "100%" }}
               />
 
               <TextField
@@ -208,7 +230,7 @@ class ModalEditarCliente extends Component {
                 type="text"
                 value={this.state.usuario.pis}
                 onChange={e => { this.handleChangePis(e) }}
-                style={{ width: "50vw" }}
+                style={{ width: "100%" }}
               />
 
               <TextField
@@ -218,7 +240,7 @@ class ModalEditarCliente extends Component {
                 type="text"
                 value={this.state.usuario.carteira_trabalho}
                 onChange={e => { this.handleChangeCarteiraTrabalho(e) }}
-                style={{ width: "50vw" }}
+                style={{ width: "100%" }}
               /><br />
 
               <p className="desc-cad marg-desc">Endereço</p>
@@ -229,7 +251,7 @@ class ModalEditarCliente extends Component {
                 type="text"
                 value={this.state.usuario.cep}
                 onChange={e => { this.handleChangeCep(e) }}
-                style={{ width: "50vw" }}
+                style={{ width: "100%" }}
               />
 
               <TextField
@@ -239,7 +261,7 @@ class ModalEditarCliente extends Component {
                 type="text"
                 value={this.state.usuario.logradouro}
                 onChange={e => { this.handleChangeLogradouro(e) }}
-                style={{ width: "50vw" }}
+                style={{ width: "100%" }}
               />
 
               <TextField
@@ -249,7 +271,7 @@ class ModalEditarCliente extends Component {
                 type="text"
                 value={this.state.usuario.nomeRua}
                 onChange={e => { this.handleChangeNomeRua(e) }}
-                style={{ width: "50vw" }}
+                style={{ width: "100%" }}
               />
 
               <TextField
@@ -259,7 +281,7 @@ class ModalEditarCliente extends Component {
                 type="text"
                 value={this.state.usuario.numero}
                 onChange={e => { this.handleChangeNumero(e) }}
-                style={{ width: "50vw" }}
+                style={{ width: "100%" }}
               />
 
               <TextField
@@ -269,7 +291,7 @@ class ModalEditarCliente extends Component {
                 type="text"
                 value={this.state.usuario.complemento}
                 onChange={e => { this.handleChangeComplemento(e) }}
-                style={{ width: "50vw" }}
+                style={{ width: "100%" }}
               />
 
               <TextField
@@ -279,7 +301,7 @@ class ModalEditarCliente extends Component {
                 type="text"
                 value={this.state.usuario.cidade}
                 onChange={e => { this.handleChangeCidade(e) }}
-                style={{ width: "50vw" }}
+                style={{ width: "100%" }}
               />
 
               <TextField
@@ -289,7 +311,7 @@ class ModalEditarCliente extends Component {
                 type="text"
                 value={this.state.usuario.UF}
                 onChange={e => { this.handleChangeUf(e) }}
-                style={{ width: "50vw" }}
+                style={{ width: "100%" }}
               />
 
               <p className="desc-cad marg-desc">Contato</p>
@@ -301,7 +323,7 @@ class ModalEditarCliente extends Component {
                 type="text"
                 value={this.state.usuario.telefoneResidencial}
                 onChange={e => { this.handleChangeTelefoneResidencial(e) }}
-                style={{ width: "50vw" }}
+                style={{ width: "100%" }}
               />
 
               <TextField
@@ -311,7 +333,7 @@ class ModalEditarCliente extends Component {
                 type="text"
                 value={this.state.usuario.telefoneComercial}
                 onChange={e => { this.handleChangeTelefoneComercial(e) }}
-                style={{ width: "50vw" }}
+                style={{ width: "100%" }}
               />
 
               <TextField
@@ -321,7 +343,7 @@ class ModalEditarCliente extends Component {
                 type="text"
                 value={this.state.usuario.celular}
                 onChange={e => { this.handleChangeCelular(e) }}
-                style={{ width: "50vw" }}
+                style={{ width: "100%" }}
               />
 
               <TextField
@@ -331,10 +353,9 @@ class ModalEditarCliente extends Component {
                 type="email"
                 value={this.state.usuario.email}
                 onChange={e => { this.handleChangeEmail(e) }}
-                style={{ width: "50vw" }}
+                style={{ width: "100%" }}
               />
             </form>
-
           </DialogContent>
           <DialogActions>
             <Button variant="contained" color="primary" className="btn" onClick={this.props.handleClose}>
