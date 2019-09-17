@@ -9,6 +9,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import ModalEditarCliente from './ModalEditarCliente.js';
+import ModalVerMais from './ModalVerMais.js';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -25,7 +26,7 @@ class CardListagemCliente extends Component {
     this.state = {
       modalDeleteCliente: false,
       editmodal: false,
-      createmodal: false,
+      vermaismodal: false,
       open: false,
         usuario: {
             nome: '',
@@ -66,15 +67,16 @@ class CardListagemCliente extends Component {
         console.log("Erro ao tentar Excluir")
       }else{
         console.log("Excluido com sucesso")
+        window.location.reload();
       }
-
+      
       return response.json() })
-    .then((resultado => this.setState({ tableData: resultado })));
+      .then((resultado => this.setState({ tableData: resultado })));
   }
   
 
   handleVerMais = () => {
-    alert("Ver mais")
+    this.setState({ vermaismodal: !this.state.vermaismodal });
   };
 
   handleEditar = () => {
@@ -85,8 +87,12 @@ class CardListagemCliente extends Component {
     this.setState({ modalDeleteCliente: !this.state.modalDeleteCliente });
   };
 
-  handleCloseEditarCliente = () => {
+  handleCloseEditar = () => {
     this.setState({editmodal: false});
+  }
+
+  handleCloseVerMais = () => {
+    this.setState({vermaismodal: false});
   }
 
 
@@ -162,10 +168,10 @@ class CardListagemCliente extends Component {
           </DialogActions>
         </Dialog>
 
-        <ModalEditarCliente usuario={this.props.cliente} handleClose={this.handleCloseEditarCliente} editmodal={this.state.editmodal} click={(() => {this.setState({ editmodal: !this.state.editmodal }) }) }/>
-       
-      </div>
+        <ModalEditarCliente usuario={this.props.cliente} handleClose={this.handleCloseEditar} editmodal={this.state.editmodal} click={(() => {this.setState({ editmodal: !this.state.editmodal }) }) }/>
+        <ModalVerMais usuario={this.props.cliente} handleClose={this.handleCloseVerMais} vermaismodal={this.state.vermaismodal} click={(() => {this.setState({ vermaismodal: !this.state.vermaismodal }) }) }/>
 
+      </div>
     )
   }
 }
