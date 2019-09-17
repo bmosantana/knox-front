@@ -184,6 +184,7 @@ class ModalCadastrarCliente extends Component {
                     alert("Verifique se os dados estão corretos entes de finalizar o seu cadastro.")
                 } else {
                     alert("Cadastro realizado com SUCESSO.")
+                    window.location.reload();
                 }
                 return console.log(response);
             });
