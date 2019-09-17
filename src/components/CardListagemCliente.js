@@ -115,7 +115,7 @@ class CardListagemCliente extends Component {
                   aria-label="Mudar visualizacao campo"
                   onClick={this.handleVerMais}
                 >
-                  <Icon style={{ color: "black" }}>more_vert</Icon>
+                  <Icon style={{ color: "black" }}>visibility</Icon>
                 </IconButton>
 
                 <IconButton

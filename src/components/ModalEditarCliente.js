@@ -134,7 +134,7 @@ class ModalEditarCliente extends Component {
   handleSubmit = (event) => {
     let usuario = this.state.usuario;
 
-    fetch(enderecoApi + "cliente", {
+    fetch(enderecoApi + "cliente/" + usuario.cpf, {
       method: "PUT",
       headers: {
         'Accept': 'application/json',
@@ -163,6 +163,7 @@ class ModalEditarCliente extends Component {
       .then((response) => {
         if (response.status !== 200) {
           alert("Status: " + response.status)
+          window.location.reload();
         } else {
           alert("Foi")
           this.props.handleClose();
