@@ -8,7 +8,6 @@ import Input from '@material-ui/core/Input';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { Icon } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
-import ModalEditarCliente from './ModalEditarCliente.js';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -16,6 +15,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import ModalCadastrarCliente from './ModalCadastrarCliente.js';
 import IntercessoraListagemCliente from './IntercessoraListagemCliente.js';
+
 
 
 const enderecoApi = "https://knoxapp180120.herokuapp.com/";
@@ -39,7 +39,12 @@ class Cliente extends Component {
     this.loadList();
   }
 
+  // componentDidUpdate(){
+  //   this.loadList();
+  // }
+
   loadList() {
+    let reverseList;
     fetch( enderecoApi + "cliente", {
       method: "GET",
       headers: {
@@ -49,13 +54,16 @@ class Cliente extends Component {
     })
     .then((response) => { 
       if(response.status !== 200){
-        console.log("Verifique se os dados estão corretos entes de finalizar o seu cadastro.")
+        console.log("GET de CLIENTES falhou.")
       }else{
         console.log("GET realizado com SUCESSO.")
       }
 
       return response.json() })
-    .then((resultado => this.setState({ tableData: resultado })));
+    .then((resultado ) => {
+      reverseList = resultado.reverse();
+      this.setState({ tableData: reverseList })
+    })
   }
 
   handlePesquisa = () => {
@@ -74,18 +82,6 @@ class Cliente extends Component {
     this.setState({ createmodal: !this.state.createmodal });
   };
 
-  handleDeletar = () => {
-    alert("Deletar")
-  };
-
-  handleModalDelete = () => {
-    this.setState({ modalStateAdd: !this.state.modalStateAdd });
-  };
-
-  handlePage = () => {
-    window.location.href = "/cadastroCliente"
-  };
-
   handleCloseCadastrarCliente = () => {
     this.setState({createmodal: false});
   }
@@ -100,7 +96,7 @@ class Cliente extends Component {
     if (this.state.tableData.length > 0) {
       listDisplay = <IntercessoraListagemCliente tableData={this.state.tableData} view={this.handleClick}></IntercessoraListagemCliente>
     }
-    console.log("table DAta : "+ this.state.tableData);
+    
     return (
       <div>
         <MenuLateral />
@@ -132,6 +128,7 @@ class Cliente extends Component {
             {listDisplay}
 
           {/* botão para cadastrar mais um cliente */}
+
           <div id="fab-add">
             <Fab color="primary" aria-label="Add" onClick={this.handleCriar}>
               <Icon>add</Icon>
@@ -139,31 +136,6 @@ class Cliente extends Component {
           </div>
         </div>
 
-        {/* Dialogo que abre para verificar se o usuario deseja realmente deletar o cliente */}
-        <Dialog
-          open={this.state.modalStateAdd}
-          onClose={this.handleModalDelete}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
-          <DialogTitle id="alert-dialog-title">
-            {"Deseja realmente deletar esse Cliente?"}
-          </DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              Após esse cliente ser deletado você não poderá mais busca-lo na sua listagem, e nem atribuir eventos a ele.
-                      </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={this.handleModalDelete} color="primary">
-              SIM
-                      </Button>
-            <Button onClick={this.handleModalDelete} color="primary" autoFocus>
-              NÃO
-                      </Button>
-          </DialogActions>
-        </Dialog>
-        
         <ModalCadastrarCliente handleClose={this.handleCloseCadastrarCliente} createmodal={this.state.createmodal} click={(() => {this.setState({ createmodal: !this.state.createmodal }) })}/>
       </div>
 
