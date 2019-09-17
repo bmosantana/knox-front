@@ -102,7 +102,7 @@ class Cliente extends Component {
         <MenuLateral />
 
         <div id="none-box">
-          <span id="name">Cliente</span>
+          <span id="name">Meus Clientes</span>
         </div>
 
         <div className="clientes-page">
