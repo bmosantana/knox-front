@@ -26,10 +26,12 @@ class Cliente extends Component {
     super(props)
     this.state = {
       tableData: [],
+      resultadoBusca: [],
       modalStateAdd: false,
       editmodal: false,
       createmodal: false,
       open: false,
+      busca: ""
     }
     // // Bind, utilizado para o método enxergar o "this"
     // this.handleModal = this.handleModal.bind(this)
@@ -62,12 +64,17 @@ class Cliente extends Component {
       return response.json() })
     .then((resultado ) => {
       reverseList = resultado.reverse();
-      this.setState({ tableData: reverseList })
+      this.setState({ tableData: reverseList, resultadoBusca: reverseList })
     })
   }
 
+  handleChangeBusca = (event) => {
+    this.setState({ busca: event.target.value });
+  };
+
   handlePesquisa = () => {
-    alert("Pesquisa cliente")
+    let buscados = this.state.tableData.filter(obj => obj.nome.toLowerCase().indexOf(this.state.busca.toLowerCase()) > -1);
+    this.setState({resultadoBusca: buscados});
   };
 
   handleVerMais = () => {
@@ -94,7 +101,7 @@ class Cliente extends Component {
   render() {
     let listDisplay;
     if (this.state.tableData.length > 0) {
-      listDisplay = <IntercessoraListagemCliente tableData={this.state.tableData} view={this.handleClick}></IntercessoraListagemCliente>
+      listDisplay = <IntercessoraListagemCliente tableData={this.state.resultadoBusca} view={this.handleClick}></IntercessoraListagemCliente>
     }
     
     return (
@@ -109,8 +116,9 @@ class Cliente extends Component {
           {/* Campo de buscar e botão de adicionar */}
           <div id="campo-busca">
             <Input
-              id="pesquisa"
+              id="busca"
               type={'text'}
+              onChange={this.handleChangeBusca}
               endAdornment={
                 <InputAdornment position="end" >
                   <IconButton
@@ -129,12 +137,13 @@ class Cliente extends Component {
 
           {/* botão para cadastrar mais um cliente */}
 
-          <div id="fab-add">
+        </div>
+
+        <div id="fab-add">
             <Fab color="primary" aria-label="Add" onClick={this.handleCriar}>
               <Icon>add</Icon>
             </Fab>
           </div>
-        </div>
 
         <ModalCadastrarCliente handleClose={this.handleCloseCadastrarCliente} createmodal={this.state.createmodal} click={(() => {this.setState({ createmodal: !this.state.createmodal }) })}/>
       </div>
