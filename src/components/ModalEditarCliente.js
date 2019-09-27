@@ -15,7 +15,7 @@ class ModalEditarCliente extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      usuario: {}
+      usuario: props.usuario
     }
   }
 
@@ -133,6 +133,7 @@ class ModalEditarCliente extends Component {
 
   handleSubmit = (event) => {
     let usuario = this.state.usuario;
+    console.log(usuario)
 
     fetch(enderecoApi + "cliente/" + usuario.cpf, {
       method: "PUT",
@@ -209,6 +210,7 @@ class ModalEditarCliente extends Component {
                 label="CPF*"
                 margin="normal"
                 type="text"
+                disabled
                 value={this.state.usuario.cpf}
                 onChange={e => { this.handleChangeCpf(e) }}
                 style={{ width: "100%" }}
