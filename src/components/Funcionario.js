@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import MenuLateral from './MenuLateral.js';
 import Fab from '@material-ui/core/Fab';
-import './css/cliente.css'
+import './css/funcionario.css'
 import IconButton from '@material-ui/core/IconButton';
 import Input from '@material-ui/core/Input';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -12,7 +12,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import ModalEditarCliente from './ModalEditarCliente.js';
+import ModalEditarFuncionario from './ModalEditarFuncionario.js';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -35,7 +35,7 @@ class Funcionario extends Component{
     }
 
     handlePesquisa = () =>{
-        alert("Pesquisa cliente")
+        alert("Pesquisa funcionario")
     };
 
     handleVerMais = () =>{
@@ -55,9 +55,12 @@ class Funcionario extends Component{
     };
 
     handlePage = () => {
-        window.location.href = "/cadastroCliente"
+        window.location.href = "/cadastroFuncionario"
     };
 
+    handleCloseEditarFuncionario = () =>{
+      this.setState({editmodal: false});      
+    };
 
     render(){
         return (
@@ -68,7 +71,7 @@ class Funcionario extends Component{
                     <span id="name">Funcionario</span>
                   </div>
                 
-                <div className="clientes-page">
+                <div className="funcionarios-page">
                     {/* Campo de buscar e botão de adicionar */}
                     <div id="campo-busca">
                             <Input
@@ -88,7 +91,7 @@ class Funcionario extends Component{
                     </div>
 
                     {/* listagem de fato */}
-                    <div id="lista-clientes">
+                    <div id="lista-funcionarios">
                         <Card style={{width: "50vw"}}>
                             <CardContent>
                               <Typography gutterBottom variant="h5" component="h2">
@@ -129,7 +132,7 @@ class Funcionario extends Component{
                         </Card>
                     </div>
 
-                    <div id="lista-clientes">
+                    <div id="lista-funcionarios">
                         <Card style={{width: "50vw"}}>
                             <CardContent>
                               <Typography gutterBottom variant="h5" component="h2">
@@ -170,7 +173,7 @@ class Funcionario extends Component{
                         </Card>
                     </div>
 
-                    {/* botão para cadastrar mais um cliente */}
+                    {/* botão para cadastrar mais um funcionario */}
                     <div id="fab-add">
                         <Fab color="primary" aria-label="Add"  onClick={this.handlePage}>
                           <Icon>add</Icon>
@@ -178,7 +181,7 @@ class Funcionario extends Component{
                     </div>
                 </div>
 
-                {/* Dialogo que abre para verificar se o usuario deseja realmente deletar o cliente */}
+                {/* Dialogo que abre para verificar se o usuario deseja realmente deletar o funcioanrio */}
                 <Dialog
                   open={this.state.modalStateAdd}
                   onClose={this.handleModalDelete}
@@ -186,11 +189,11 @@ class Funcionario extends Component{
                   aria-describedby="alert-dialog-description"
                 >
                     <DialogTitle id="alert-dialog-title">
-                        {"Deseja realmente deletar esse Cliente?"}
+                        {"Deseja realmente deletar esse Funcionario?"}
                     </DialogTitle>
                     <DialogContent>
                       <DialogContentText id="alert-dialog-description">
-                        Após esse cliente ser deletado você não poderá mais busca-lo na sua listagem, e nem atribuir eventos a ele.
+                        Após esse funcioanrio ser deletado você não poderá mais busca-lo na sua listagem, e nem atribuir eventos a ele.
                       </DialogContentText>
                     </DialogContent>
                     <DialogActions>
@@ -203,7 +206,7 @@ class Funcionario extends Component{
                     </DialogActions>
                 </Dialog>
 
-                <ModalEditarCliente editmodal={this.state.editmodal}/>
+                <ModalEditarFuncionario editmodal={this.state.editmodal} handleClose={this.handleCloseEditarFuncionario} click={(() => {this.setState({ editmodal: !this.state.editmodal }) })}/>/>
             </div>
 
         )
