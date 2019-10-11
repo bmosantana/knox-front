@@ -35,25 +35,26 @@ class Cliente extends Component {
 
   loadList() {
     let reverseList;
-    fetch( enderecoApi + "cliente", {
+    fetch(enderecoApi + "cliente", {
       method: "GET",
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       }
     })
-    .then((response) => { 
-      if(response.status !== 200){
-        console.log("GET de CLIENTES falhou.")
-      }else{
-        console.log("GET realizado com SUCESSO.")
-      }
+      .then((response) => {
+        if (response.status !== 200) {
+          console.log("GET de CLIENTES falhou.")
+        } else {
+          console.log("GET realizado com SUCESSO.")
+        }
 
-      return response.json() })
-    .then((resultado ) => {
-      reverseList = resultado.reverse();
-      this.setState({ tableData: reverseList, resultadoBusca: reverseList })
-    })
+        return response.json()
+      })
+      .then((resultado) => {
+        reverseList = resultado.reverse();
+        this.setState({ tableData: reverseList, resultadoBusca: reverseList })
+      })
   }
 
   handleChangeBusca = (event) => {
@@ -62,7 +63,7 @@ class Cliente extends Component {
 
   handlePesquisa = () => {
     let buscados = this.state.tableData.filter(obj => obj.nome.toLowerCase().indexOf(this.state.busca.toLowerCase()) > -1);
-    this.setState({resultadoBusca: buscados});
+    this.setState({ resultadoBusca: buscados });
   };
 
   handleEditar = () => {
@@ -74,11 +75,11 @@ class Cliente extends Component {
   };
 
   handleCloseCadastrarCliente = () => {
-    this.setState({createmodal: false});
+    this.setState({ createmodal: false });
   }
 
   handleCloseEditarCliente = () => {
-    this.setState({editmodal: false});
+    this.setState({ editmodal: false });
   }
 
 
@@ -87,7 +88,7 @@ class Cliente extends Component {
     if (this.state.tableData.length > 0) {
       listDisplay = <IntercessoraListagemCliente tableData={this.state.resultadoBusca} view={this.handleClick}></IntercessoraListagemCliente>
     }
-    
+
     return (
       <div>
         <MenuLateral />
@@ -100,7 +101,7 @@ class Cliente extends Component {
           {/* Campo de buscar e botão de adicionar */}
           <div id="campo-busca">
             <Input
-              id="busca"
+              id="pesquisa"
               type={'text'}
               onChange={this.handleChangeBusca}
               endAdornment={
@@ -117,19 +118,19 @@ class Cliente extends Component {
           </div>
 
           {/* listagem de fato */}
-            {listDisplay}
+          {listDisplay}
 
           {/* botão para cadastrar mais um cliente */}
 
         </div>
 
         <div id="fab-add">
-            <Fab color="primary" aria-label="Add" onClick={this.handleCriar}>
-              <Icon>add</Icon>
-            </Fab>
-          </div>
+          <Fab color="primary" aria-label="Add" onClick={this.handleCriar}>
+            <Icon>add</Icon>
+          </Fab>
+        </div>
 
-        <ModalCadastrarCliente handleClose={this.handleCloseCadastrarCliente} createmodal={this.state.createmodal} click={(() => {this.setState({ createmodal: !this.state.createmodal }) })}/>
+        <ModalCadastrarCliente handleClose={this.handleCloseCadastrarCliente} createmodal={this.state.createmodal} click={(() => { this.setState({ createmodal: !this.state.createmodal }) })} />
       </div>
 
     )

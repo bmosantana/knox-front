@@ -28,26 +28,27 @@ class CardListagemFuncionario extends Component {
       editmodal: false,
       vermaismodal: false,
       open: false,
-        usuario: {
-            nome: '',
-            cpf: '',
-            rg: '',
-            pis: '',
-            carteira_trabalho: '',
+      usuario: {
+        nome: '',
+        cpf: '',
+        rg: '',
+        adm: '',
+        senha: '',
+        email: '',
 
-            cep: '',
-            logradouro: '',
-            nomeRua: '',
-            complemento: '',
-            numero: '',
-            cidade: '',
-            UF: '',
+        cargo: '',
+        complemento: '',
+        numero: '',
+        cidade: '',
+        UF: '',
+        logradouro: '',
+        nomeRua: '',
+        cep:'',
+        telefone: '',
+        celular: '',
 
-            telefoneResidencial: '',
-            telefoneComercial: '',
-            email: '',
-            celular: ''
-        }
+        tipofuncionario:''
+    }
     }
     // // Bind, utilizado para o método enxergar o "this"
     // this.handleModal = this.handleModal.bind(this)

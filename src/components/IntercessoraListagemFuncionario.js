@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import CardListagemCliente from './CardListagemCliente.js';
+import CardListagemFuncionario from './CardListagemFuncionario.js';
 
-class IntercessoraListagemCliente extends Component {
+class IntercessoraListagemFuncionario extends Component {
 
     constructor(props) {
         super(props)
@@ -11,11 +11,11 @@ class IntercessoraListagemCliente extends Component {
         return (
             <div id="produtos-cards" style={{display: "flex", flexWrap: "wrap",justifyContent: "space-between"}}>
                 {this.props.tableData.map((row, index) => (
-                    <CardListagemCliente funcionario={row} view={this.props.view} key={index}></CardListagemCliente>
+                    <CardListagemFuncionario funcionario={row} view={this.props.view} key={index}></CardListagemFuncionario>
                 ))}
             </div>
         )
     }
 }
 
-export default IntercessoraListagemCliente;
+export default IntercessoraListagemFuncionario;
