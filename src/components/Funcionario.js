@@ -76,14 +76,9 @@ class Funcionario extends Component {
     this.setState({ createmodal: !this.state.createmodal });
   };
 
-  handleCloseCadastrarCliente = () => {
+  handleCloseCadastrarFuncionario = () => {
     this.setState({ createmodal: false });
   }
-
-  handleCloseEditarCliente = () => {
-    this.setState({ editmodal: false });
-  }
-
 
   render() {
     let listDisplay;

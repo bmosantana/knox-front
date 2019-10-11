@@ -8,8 +8,8 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import ModalEditarCliente from './ModalEditarCliente.js';
-import ModalVerMais from './ModalVerMais.js';
+import ModalEditarFuncionario from './ModalEditarFuncionario.js';
+import ModalVerMaisFuncionario from './ModalVerMaisFuncionario.js';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -43,38 +43,37 @@ class CardListagemFuncionario extends Component {
         UF: '',
         logradouro: '',
         nomeRua: '',
-        cep:'',
+        cep: '',
         telefone: '',
         celular: '',
 
-        tipofuncionario:''
+        tipofuncionario: ''
+      }
     }
-    }
-    // // Bind, utilizado para o método enxergar o "this"
-    // this.handleModal = this.handleModal.bind(this)
   }
 
-  
-  handleCallDeleteApi = () =>{
-    fetch( enderecoApi + "funcionario/" + this.props.funcionario.cpf, {
+
+  handleCallDeleteApi = () => {
+    fetch(enderecoApi + "funcionario/" + this.props.funcionario.cpf, {
       method: "DELETE",
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       }
     })
-    .then((response) => { 
-      if(response.status !== 200){
-        console.log("Erro ao tentar Excluir")
-      }else{
-        console.log("Excluido com sucesso")
-        window.location.reload();
-      }
-      
-      return response.json() })
+      .then((response) => {
+        if (response.status !== 200) {
+          console.log("Erro ao tentar Excluir")
+        } else {
+          console.log("Excluido com sucesso")
+          window.location.reload();
+        }
+
+        return response.json()
+      })
       .then((resultado => this.setState({ tableData: resultado })));
   }
-  
+
 
   handleVerMais = () => {
     this.setState({ vermaismodal: !this.state.vermaismodal });
@@ -89,11 +88,11 @@ class CardListagemFuncionario extends Component {
   };
 
   handleCloseEditar = () => {
-    this.setState({editmodal: false});
+    this.setState({ editmodal: false });
   }
 
   handleCloseVerMais = () => {
-    this.setState({vermaismodal: false});
+    this.setState({ vermaismodal: false });
   }
 
 
@@ -169,8 +168,8 @@ class CardListagemFuncionario extends Component {
           </DialogActions>
         </Dialog>
 
-        {/* <ModalEditarCliente usuario={this.props.cliente} handleClose={this.handleCloseEditar} editmodal={this.state.editmodal} click={(() => {this.setState({ editmodal: !this.state.editmodal }) }) }/>
-        <ModalVerMais usuario={this.props.cliente} handleClose={this.handleCloseVerMais} vermaismodal={this.state.vermaismodal} click={(() => {this.setState({ vermaismodal: !this.state.vermaismodal }) }) }/> */}
+        <ModalEditarFuncionario usuario={this.props.funcionario} handleClose={this.handleCloseEditar} editmodal={this.state.editmodal} click={(() => {this.setState({ editmodal: !this.state.editmodal }) }) }/>
+        <ModalVerMaisFuncionario usuario={this.props.funcionario} handleClose={this.handleCloseVerMais} vermaismodal={this.state.vermaismodal} click={(() => {this.setState({ vermaismodal: !this.state.vermaismodal }) }) }/>
 
       </div>
     )

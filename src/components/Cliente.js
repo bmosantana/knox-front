@@ -78,11 +78,6 @@ class Cliente extends Component {
     this.setState({ createmodal: false });
   }
 
-  handleCloseEditarCliente = () => {
-    this.setState({ editmodal: false });
-  }
-
-
   render() {
     let listDisplay;
     if (this.state.tableData.length > 0) {

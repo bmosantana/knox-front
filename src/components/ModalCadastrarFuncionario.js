@@ -28,11 +28,11 @@ class ModalCadastrarFuncionario extends Component {
                 UF: '',
                 logradouro: '',
                 nomeRua: '',
-                cep:'',
+                cep: '',
                 telefone: '',
                 celular: '',
 
-                tipofuncionario:''
+                tipofuncionario: ''
             }
         };
 
@@ -270,9 +270,9 @@ class ModalCadastrarFuncionario extends Component {
 
                             <TextField
                                 id="adm"
-                                label="O funcionário que será cadastrado é um Administrador?"
+                                label="O funcionário é um Administrador?"
                                 margin="normal"
-                                type="password"
+                                type="text"
                                 value={this.state.usuario.adm}
                                 onChange={e => { this.handleChangeAdm(e) }}
                                 style={{ width: "100%" }}
