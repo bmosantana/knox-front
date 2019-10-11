@@ -22,6 +22,8 @@ class ModalVerMais extends Component {
     return (
       <div>
         <Dialog
+          fullWidth={true}
+          maxWidth={'sm'}
           open={this.props.vermaismodal}
           onClose={this.props.handleClose}
           scroll="paper"
