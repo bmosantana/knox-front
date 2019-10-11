@@ -7,12 +7,6 @@ import IconButton from '@material-ui/core/IconButton';
 import Input from '@material-ui/core/Input';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { Icon } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import ModalCadastrarCliente from './ModalCadastrarCliente.js';
 import IntercessoraListagemCliente from './IntercessoraListagemCliente.js';
 
@@ -33,17 +27,11 @@ class Cliente extends Component {
       open: false,
       busca: ""
     }
-    // // Bind, utilizado para o método enxergar o "this"
-    // this.handleModal = this.handleModal.bind(this)
   }
 
   componentWillMount() {
     this.loadList();
   }
-
-  // componentDidUpdate(){
-  //   this.loadList();
-  // }
 
   loadList() {
     let reverseList;
@@ -75,10 +63,6 @@ class Cliente extends Component {
   handlePesquisa = () => {
     let buscados = this.state.tableData.filter(obj => obj.nome.toLowerCase().indexOf(this.state.busca.toLowerCase()) > -1);
     this.setState({resultadoBusca: buscados});
-  };
-
-  handleVerMais = () => {
-    alert("Ver mais")
   };
 
   handleEditar = () => {

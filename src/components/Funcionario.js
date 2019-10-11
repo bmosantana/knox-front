@@ -12,14 +12,14 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import ModalEditarCliente from './ModalEditarCliente.js';
+import ModalCadastrarFuncionario from './ModalCadastrarFuncionario.js';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-
+const enderecoApi = "https://knoxapp180120.herokuapp.com/";
 
 class Funcionario extends Component{
   
@@ -29,34 +29,68 @@ class Funcionario extends Component{
             modalStateAdd: false,
             editmodal: false,
             open: false,
+            tableData: [],
+            resultadoBusca: [],
+            modalStateAdd: false,
+            editmodal: false,
+            createmodal: false,
+            open: false,
+            busca: ""
         }
         // // Bind, utilizado para o método enxergar o "this"
         // this.handleModal = this.handleModal.bind(this)
     }
-
-    handlePesquisa = () =>{
-        alert("Pesquisa cliente")
+    componentWillMount() {
+      this.loadList();
+    }
+  
+    loadList() {
+      let reverseList;
+      fetch( enderecoApi + "cliente", {
+        method: "GET",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      })
+      .then((response) => { 
+        if(response.status !== 200){
+          console.log("GET de CLIENTES falhou.")
+        }else{
+          console.log("GET realizado com SUCESSO.")
+        }
+  
+        return response.json() })
+      .then((resultado ) => {
+        reverseList = resultado.reverse();
+        this.setState({ tableData: reverseList, resultadoBusca: reverseList })
+      })
+    }
+  
+    handleChangeBusca = (event) => {
+      this.setState({ busca: event.target.value });
     };
-
-    handleVerMais = () =>{
-        alert("Ver mais")
+  
+    handlePesquisa = () => {
+      let buscados = this.state.tableData.filter(obj => obj.nome.toLowerCase().indexOf(this.state.busca.toLowerCase()) > -1);
+      this.setState({resultadoBusca: buscados});
     };
-
-    handleEditar = () =>{
-        this.setState({editmodal: !this.state.editmodal});
+  
+    handleEditar = () => {
+      this.setState({ editmodal: !this.state.editmodal });
     };
-
-    handleDeletar = () =>{
-        alert("Deletar")
+  
+    handleCriar = () => {
+      this.setState({ createmodal: !this.state.createmodal });
     };
-
-    handleModalDelete = () =>{
-        this.setState({modalStateAdd: !this.state.modalStateAdd});
-    };
-
-    handlePage = () => {
-        window.location.href = "/cadastroCliente"
-    };
+  
+    handleCloseCadastrarCliente = () => {
+      this.setState({createmodal: false});
+    }
+  
+    handleCloseEditarCliente = () => {
+      this.setState({editmodal: false});
+    }
 
 
     render(){
@@ -172,7 +206,7 @@ class Funcionario extends Component{
 
                     {/* botão para cadastrar mais um cliente */}
                     <div id="fab-add">
-                        <Fab color="primary" aria-label="Add"  onClick={this.handlePage}>
+                        <Fab color="primary" aria-label="Add"  onClick={this.handleCriar}>
                           <Icon>add</Icon>
                         </Fab>
                     </div>
@@ -203,9 +237,11 @@ class Funcionario extends Component{
                     </DialogActions>
                 </Dialog>
 
-                <ModalEditarCliente editmodal={this.state.editmodal}/>
+
+                <ModalCadastrarFuncionario handleClose={this.handleCloseCadastrarFuncionario} createmodal={this.state.createmodal} click={(() => {this.setState({ createmodal: !this.state.createmodal }) })}/>
             </div>
 
+          
         )
     }
 }
