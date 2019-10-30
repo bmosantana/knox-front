@@ -5,9 +5,6 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import TextField from '@material-ui/core/TextField';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Snackbar from '@material-ui/core/Snackbar';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
 import "./css/modalEditarcliente.css";
 
 const enderecoApi = "https://knoxapp180120.herokuapp.com/";
@@ -55,8 +52,7 @@ class ModalCadastrarCliente extends Component {
                 telefoneComercial: '',
                 email: '',
                 celular: ''
-            },
-            open: false
+            }
         };
 
     }
@@ -354,13 +350,11 @@ class ModalCadastrarCliente extends Component {
         if (valid === true) {
             this.insertUser();
         } else {
+            console.log(this.state.errors);
             return console.log("não podemos enviar os dados");
         }
     }
 
-    handleClose = () => {
-        this.setState({ open: true });
-    }
 
     insertUser = () => {
         let usuario = this.state.usuario;
