@@ -221,6 +221,7 @@ class ModalEditarCliente extends Component {
                 label="RG*"
                 margin="normal"
                 type="text"
+                disabled
                 value={this.state.usuario.rg}
                 onChange={e => { this.handleChangeRg(e) }}
                 style={{ width: "100%" }}
@@ -269,7 +270,7 @@ class ModalEditarCliente extends Component {
 
               <TextField
                 id="nomeRua"
-                label="Nome Rua*"
+                label="Nome da Rua*"
                 margin="normal"
                 type="text"
                 value={this.state.usuario.nomeRua}
@@ -289,7 +290,7 @@ class ModalEditarCliente extends Component {
 
               <TextField
                 id="complemento"
-                label="Complemento*"
+                label="Complemento"
                 margin="normal"
                 type="text"
                 value={this.state.usuario.complemento}
