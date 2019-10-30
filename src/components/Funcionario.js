@@ -98,6 +98,7 @@ class Funcionario extends Component {
           {/* Campo de buscar e botão de adicionar */}
           <div id="campo-busca">
             <Input
+              placeholder="Digite o nome do FUNCIONÁRIO que procura"
               id="pesquisa"
               type={'text'}
               onChange={this.handleChangeBusca}

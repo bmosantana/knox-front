@@ -237,14 +237,14 @@ class ModalCadastrarCliente extends Component {
         event.preventDefault();
         let valid = true;
         let errors = this.state.errors;
-        if (this.state.usuario.nome.length < 2 || this.state.usuario.nome.length > 256) {
+        if (this.state.usuario.nome.length < 2 || this.state.usuario.nome.length > 256 || this.state.usuario.nome.length == 0) {
             errors.nome = "Nome deve conter entre 2 e 256 caracteres."
             valid = false;
             
         }
 
         if (this.state.usuario.rg == null || this.state.usuario.rg.length != 9 ||
-            this.state.usuario.rg.length < 2 || this.state.usuario.rg.length > 256) {
+            this.state.usuario.rg.length < 2 || this.state.usuario.rg.length > 256 || this.state.usuario.rg.length == 0) {
             errors.rg = "RG deve conter 9 digitos e ser um RG válido!"
             valid = false;
             
@@ -252,20 +252,20 @@ class ModalCadastrarCliente extends Component {
         }
 
         if (this.state.usuario.cpf == null || this.state.usuario.cpf.length != 11 ||
-            this.state.usuario.cpf.length > 11 || this.state.usuario.cpf.length < 11) {
+            this.state.usuario.cpf.length > 11 || this.state.usuario.cpf.length < 11 || this.state.usuario.cpf.length == 0) {
             errors.cpf = "CPF deve conter 11 digitos e ser um CPF válido!"
             valid = false;
             
             console.log("CPF Inválido");
         }
 
-        if (this.state.usuario.cep.length < 8 || this.state.usuario.cep.length > 8) {
+        if (this.state.usuario.cep.length < 8 || this.state.usuario.cep.length > 8 || this.state.usuario.cep.length == 0) {
             errors.cep = "CEP deve conter 8 digitos."
             valid = false;
             
         }
 
-        if (this.state.usuario.pis.length < 11 || this.state.usuario.pis.length > 11) {
+        if (this.state.usuario.pis.length < 11 || this.state.usuario.pis.length > 11 ) {
             errors.pis = "PIS deve conter 11 digitos."
             valid = false;
             
@@ -276,53 +276,53 @@ class ModalCadastrarCliente extends Component {
             
         }
 
-        if (this.state.usuario.telefoneComercial.length < 9 || this.state.usuario.telefoneComercial.length > 15) {
+        if (this.state.usuario.telefoneComercial.length < 9 || this.state.usuario.telefoneComercial.length > 15 || this.state.usuario.telefoneComercial.length == 0) {
             errors.telefoneComercial = "Telefone Comercial deve conter entre 9 e 11 digitos."
             valid = false;
         }
 
-        if (this.state.usuario.telefoneResidencial.length < 9 || this.state.usuario.telefoneResidencial.length > 15) {
+        if (this.state.usuario.telefoneResidencial.length < 9 || this.state.usuario.telefoneResidencial.length > 15 ||  this.state.usuario.telefoneResidencial.length == 0) {
             errors.telefoneResidencial = "Telefone Residencial deve conter entre 9 e 11 digitos."
             valid = false;
         }
 
-        if (this.state.usuario.celular.length < 9 || this.state.usuario.celular.length > 15) {
+        if (this.state.usuario.celular.length < 9 || this.state.usuario.celular.length > 15 ||  this.state.usuario.celular.length == 0) {
             errors.celular = "Celular deve conter entre 9 e 11 digitos."
             valid = false;
         }
 
         let emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-        if (!emailRegex.test(this.state.usuario.email)) {
+        if (!emailRegex.test(this.state.usuario.email) ||  this.state.usuario.email.length == 0) {
             errors.email = "E-mail inválido."
             valid = false;
         }
 
 
-        if (this.state.usuario.logradouro.length < 3 || this.state.usuario.logradouro.length > 60) {
+        if (this.state.usuario.logradouro.length < 3 || this.state.usuario.logradouro.length > 60 ||  this.state.usuario.logradouro.length == 0) {
             errors.logradouro = "Logradouro deve conter entre 3 e 60 digitos."
             valid = false;
         }
 
-        if (this.state.usuario.nomeRua.length < 3 || this.state.usuario.nomeRua.length > 60) {
+        if (this.state.usuario.nomeRua.length < 3 || this.state.usuario.nomeRua.length > 60 ||  this.state.usuario.nomeRua.length == 0) {
             errors.nomeRua = "Nome da Rua deve conter entre 3 e 60 digitos."
             valid = false;
             
         }
 
-        if (this.state.usuario.numero.length == null || this.state.usuario.numero.length > 5) {
+        if (this.state.usuario.numero.length == null || this.state.usuario.numero.length > 5 ||  this.state.usuario.numero.length == 0) {
             errors.numero = "Número da Casa deve conter entre 1 e 5 digitos."
             valid = false;
             
         }
 
-        if (this.state.usuario.cidade.length < 3 || this.state.usuario.cidade.length > 70) {
+        if (this.state.usuario.cidade.length < 3 || this.state.usuario.cidade.length > 70 ||  this.state.usuario.cidade.length == 0) {
             errors.cidade = "Cidade deve conter entre 3 e 70 digitos."
             valid = false;
             
         }
 
-        if (this.state.usuario.UF.length < 2 || this.state.usuario.UF.length > 2) {
+        if (this.state.usuario.UF.length < 2 || this.state.usuario.UF.length > 2 ||  this.state.usuario.UF.length == 0) {
             errors.UF = "UF deve conter 2 digitos."
             valid = false;
             

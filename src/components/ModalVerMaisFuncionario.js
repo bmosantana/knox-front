@@ -13,8 +13,29 @@ const enderecoApi = "https://knoxapp180120.herokuapp.com/";
 class ModalVerMais extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      usuario: {}
+    this.state={
+      adm: '',
+      tipofuncionario: ''
+    }
+  }
+
+  componentWillMount = () =>{
+    if(this.props.usuario.adm == true){
+      this.setState({adm: "SIM"});
+    }else{
+      this.setState({adm: "NÃO"});
+    }
+
+    if(this.props.usuario.tipofuncionario == null){
+      this.setState({tipofuncionario: "-"});
+    }
+
+    if(this.props.usuario.tipofuncionario == "1"){
+      this.setState({tipofuncionario: "Advogado(a)/Gestor(a)/Sócio(a)"});
+    }
+
+    if(this.props.usuario.tipofuncionario == "0"){
+      this.setState({tipofuncionario: "Outro..."});
     }
   }
 
@@ -48,11 +69,11 @@ class ModalVerMais extends Component {
             </Typography>
 
             <Typography component="p">
-              Tipo de Funcionário: {this.props.usuario.tipofuncionario}
+              Tipo de Funcionário: {this.state.tipofuncionario}
             </Typography>
 
             <Typography component="p">
-              É Administrador: {this.props.usuario.adm}
+              É Administrador: {this.state.adm}
             </Typography>
 
             <Typography component="p">

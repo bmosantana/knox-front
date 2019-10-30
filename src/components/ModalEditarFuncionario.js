@@ -196,7 +196,7 @@ class ModalEditarFuncionario extends Component {
           aria-labelledby="scroll-dialog-title"
 
         >
-          <DialogTitle id="scroll-dialog-title">Editar Cliente</DialogTitle>
+          <DialogTitle id="scroll-dialog-title">Editar funcionario</DialogTitle>
           <DialogContent>
             <form onSubmit={this.handleSubmit} className="form-style">
               <p className="desc-cad">Dados Pessoais</p>
