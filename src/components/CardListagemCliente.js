@@ -28,52 +28,53 @@ class CardListagemCliente extends Component {
       editmodal: false,
       vermaismodal: false,
       open: false,
-        usuario: {
-            nome: '',
-            cpf: '',
-            rg: '',
-            pis: '',
-            carteira_trabalho: '',
+      usuario: {
+        nome: '',
+        cpf: '',
+        rg: '',
+        pis: '',
+        carteira_trabalho: '',
 
-            cep: '',
-            logradouro: '',
-            nomeRua: '',
-            complemento: '',
-            numero: '',
-            cidade: '',
-            UF: '',
+        cep: '',
+        logradouro: '',
+        nomeRua: '',
+        complemento: '',
+        numero: '',
+        cidade: '',
+        UF: '',
 
-            telefoneResidencial: '',
-            telefoneComercial: '',
-            email: '',
-            celular: ''
-        }
+        telefoneResidencial: '',
+        telefoneComercial: '',
+        email: '',
+        celular: ''
+      }
     }
     // // Bind, utilizado para o método enxergar o "this"
     // this.handleModal = this.handleModal.bind(this)
   }
 
-  
-  handleCallDeleteApi = () =>{
-    fetch( enderecoApi + "cliente/" + this.props.cliente.cpf, {
+
+  handleCallDeleteApi = () => {
+    fetch(enderecoApi + "cliente/" + this.props.cliente.cpf , {
       method: "DELETE",
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       }
     })
-    .then((response) => { 
-      if(response.status !== 200){
-        console.log("Erro ao tentar Excluir")
-      }else{
-        console.log("Excluido com sucesso")
-        window.location.reload();
-      }
-      
-      return response.json() })
+      .then((response) => {
+        if (response.status !== 200) {
+          console.log("Erro ao tentar Excluir")
+        } else {
+          console.log("Excluido com sucesso")
+          window.location.reload();
+        }
+
+        return response.json()
+      })
       .then((resultado => this.setState({ tableData: resultado })));
   }
-  
+
 
   handleVerMais = () => {
     this.setState({ vermaismodal: !this.state.vermaismodal });
@@ -88,11 +89,11 @@ class CardListagemCliente extends Component {
   };
 
   handleCloseEditar = () => {
-    this.setState({editmodal: false});
+    this.setState({ editmodal: false });
   }
 
   handleCloseVerMais = () => {
-    this.setState({vermaismodal: false});
+    this.setState({ vermaismodal: false });
   }
 
 
@@ -168,8 +169,8 @@ class CardListagemCliente extends Component {
           </DialogActions>
         </Dialog>
 
-        <ModalEditarCliente usuario={this.props.cliente} handleClose={this.handleCloseEditar} editmodal={this.state.editmodal} click={(() => {this.setState({ editmodal: !this.state.editmodal }) }) }/>
-        <ModalVerMais usuario={this.props.cliente} handleClose={this.handleCloseVerMais} vermaismodal={this.state.vermaismodal} click={(() => {this.setState({ vermaismodal: !this.state.vermaismodal }) }) }/>
+        <ModalEditarCliente usuario={this.props.cliente} handleClose={this.handleCloseEditar} editmodal={this.state.editmodal} click={(() => { this.setState({ editmodal: !this.state.editmodal }) })} />
+        <ModalVerMais usuario={this.props.cliente} handleClose={this.handleCloseVerMais} vermaismodal={this.state.vermaismodal} click={(() => { this.setState({ vermaismodal: !this.state.vermaismodal }) })} />
 
       </div>
     )

@@ -12,7 +12,7 @@ import IntercessoraListagemCliente from './IntercessoraListagemCliente.js';
 
 
 
-const enderecoApi = "https://knoxapp180120.herokuapp.com/";
+const enderecoApi = "http://knoxapp180120.herokuapp.com/";
 
 class Cliente extends Component {
 
@@ -35,7 +35,7 @@ class Cliente extends Component {
 
   loadList() {
     let reverseList;
-    fetch(enderecoApi + "cliente", {
+    fetch(enderecoApi + "cliente/", {
       method: "GET",
       headers: {
         'Accept': 'application/json',
@@ -54,7 +54,7 @@ class Cliente extends Component {
       .then((resultado) => {
         reverseList = resultado.reverse();
         this.setState({ tableData: reverseList, resultadoBusca: reverseList })
-      })
+      });
   }
 
   handleChangeBusca = (event) => {

@@ -315,7 +315,7 @@ class ModalEditarCliente extends Component {
     let usuario = this.state.usuario;
     console.log(usuario)
 
-    fetch(enderecoApi + "cliente/" + usuario.cpf, {
+    fetch(enderecoApi + "cliente/" + usuario.cpf + "/", {
       method: "PUT",
       headers: {
         'Accept': 'application/json',

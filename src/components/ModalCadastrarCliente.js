@@ -358,7 +358,7 @@ class ModalCadastrarCliente extends Component {
 
     insertUser = () => {
         let usuario = this.state.usuario;
-        fetch(enderecoApi + "cliente", {
+        fetch(enderecoApi + "cliente/", {
             method: "POST",
             headers: {
                 'Accept': 'application/json',

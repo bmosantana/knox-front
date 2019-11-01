@@ -37,7 +37,7 @@ class Funcionario extends Component {
 
   loadList() {
     let reverseList;
-    fetch(enderecoApi + "funcionario", {
+    fetch(enderecoApi + "funcionario/", {
       method: "GET",
       headers: {
         'Accept': 'application/json',

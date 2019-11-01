@@ -313,7 +313,7 @@ class ModalCadastrarFuncionario extends Component {
     insertUser = (event) => {
         let usuario = this.state.usuario;
 
-        fetch(enderecoApi + "funcionario", {
+        fetch(enderecoApi + "funcionario/", {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
