@@ -5,11 +5,11 @@ import Card from '@material-ui/core/Card';
 import Fab from '@material-ui/core/Fab';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-
-import Grid from '@material-ui/core/Grid';
+import ModalCadastrarProcesso from './ModalCadastrarProcesso.js';
+import IntercessoraListagemProcessos from './IntercessoraListagemProcessos.js';
 import './css/dash.css';
 
-const enderecoApi = "http://knoxapp180120.herokuapp.com/";
+const enderecoApi = "https://knoxapp180120.herokuapp.com/";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -17,7 +17,15 @@ class Dashboard extends Component {
     this.state = {
       usuario: '',
       cpf: '',
-      email: ''
+      email: '',
+
+      tableData: [],
+      resultadoBusca: [],
+      modalStateAdd: false,
+      editmodal: false,
+      createmodal: false,
+      open: false,
+      busca: ""
     }
 
 
@@ -31,6 +39,8 @@ class Dashboard extends Component {
     } else {
       return console.log("Não é possivel achar o usuário logado!")
     }
+
+    this.loadListaProcessos();
 
   }
 
@@ -46,9 +56,9 @@ class Dashboard extends Component {
     })
       .then((response) => {
         if (response.status !== 200) {
-          console.log("GET de CLIENTES falhou.")
+          console.log("GET de Funcionario falhou.")
         } else {
-          console.log("GET realizado com SUCESSO.")
+          console.log("GET de FUNCIONARIO realizado com SUCESSO.")
         }
 
         return response.json()
@@ -62,6 +72,33 @@ class Dashboard extends Component {
 
   }
 
+  loadListaProcessos() {
+    let reverseList;
+    fetch(enderecoApi + "processo/", {
+      method: "GET",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+      .then((response) => {
+        if (response.status !== 200) {
+          console.log("GET de PROCESSOS falhou.")
+        } else {
+          console.log("GET realizado com SUCESSO.")
+        }
+
+        return response.json()
+      })
+      .then((resultado) => {
+        reverseList = resultado.reverse();
+        this.setState({ tableData: reverseList, resultadoBusca: reverseList })
+        console.log("R: " + resultado)
+      });
+
+    console.log(this.state.tableData)
+  }
+
   handleSair = () => {
     localStorage.removeItem("email");
     localStorage.removeItem("cpf");
@@ -69,7 +106,30 @@ class Dashboard extends Component {
     window.location.href = "/"
   }
 
+  handleChangeBusca = (event) => {
+    this.setState({ busca: event.target.value });
+  };
+
+  handlePesquisa = () => {
+    let buscados = this.state.tableData.filter(obj => obj.nome.toLowerCase().indexOf(this.state.busca.toLowerCase()) > -1);
+    this.setState({ resultadoBusca: buscados });
+  };
+
+  handleCriar = () => {
+    this.setState({ createmodal: !this.state.createmodal });
+  };
+
+
   render() {
+    let listDisplay;
+    if (this.state.tableData.length > 0) {
+      listDisplay = <IntercessoraListagemProcessos tableData={this.state.resultadoBusca} view={this.handleClick}></IntercessoraListagemProcessos>
+    } else {
+      listDisplay = < div id="none-box" >
+        <span id="name">Não há clientes cadastrados.</span>
+      </div >
+    }
+
     return (
       <div id="page-all">
         <MenuLateral />
@@ -86,44 +146,21 @@ class Dashboard extends Component {
 
           <div id="alls">
             <div>
-              <Card>
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    Processo Nome
-                                      </Typography>
-
-                  <Typography component="p">
-                    
-                                      </Typography>
-
-                  <Typography component="p">
-                    Local: Fórum Criminal da Barra Funda
-                                      </Typography>
-
-                  <Typography component="p">
-                    Telefone: (11) 1234-56789
-                                      </Typography>
-
-                  <Typography component="p">
-                    Participantes: Julia Ribeiro
-                                      </Typography>
-
-                </CardContent>
-
-              </Card>
+              {listDisplay}
             </div>
-           
+
           </div>
 
         </div>
 
 
         <div id="fab-add">
-          <Fab color="primary" aria-label="Add" onClick={this.handlePage}>
+          <Fab color="primary" aria-label="Add" onClick={this.handleCriar}>
             <Icon>add</Icon>
           </Fab>
         </div>
 
+        <ModalCadastrarProcesso handleClose={this.handleCriar} createmodal={this.state.createmodal} click={(() => { this.setState({ createmodal: !this.state.createmodal }) })} />
       </div>
     );
   }

@@ -11,6 +11,7 @@ import Cliente from './components/Cliente.js';
 import Funcionario from './components/Funcionario.js';
 import ModalEditarCliente from './components/ModalEditarCliente.js';
 import Dashboard from './components/Dashboard.js';
+import Processos from './components/Processos.js';
 
 const history= createbrowserhistory();
 
@@ -23,6 +24,7 @@ ReactDOM.render(
                 <Route path="/editarcliente" component={ModalEditarCliente}/>
                 <Route path="/dashboard" component={Dashboard}/>
                 <Route path="/funcionario" component={Funcionario}/>
+                <Route path="/processos" component={Processos}/>
             </Switch>
         </Router>
     </MuiThemeProvider>

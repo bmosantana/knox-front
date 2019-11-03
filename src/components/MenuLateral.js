@@ -19,37 +19,37 @@ class MenuLateral extends Component {
         let cpfLogado = localStorage.getItem("cpf");
         let emailLogado = localStorage.getItem("email");
         if (cpfLogado && emailLogado) {
-          this.loadLogado(cpfLogado);
+            this.loadLogado(cpfLogado);
         } else {
             window.location.href = "/"
         }
-    
-      }
-    
-      loadLogado(cpf) {
+
+    }
+
+    loadLogado(cpf) {
         var cpfLog = cpf.replace(/[\\"]/g, '');
         console.log(cpfLog)
         fetch(enderecoApi + "funcionario/" + cpfLog, {
-          method: "GET",
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          }
-        })
-          .then((response) => {
-            if (response.status !== 200) {
-                localStorage.removeItem("email");
-                localStorage.removeItem("cpf");
-                localStorage.removeItem("senha");
-                window.location.href = "/"
-            } else {
-              return console.log("há uma pessoa logada!")
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             }
-    
-            return response.json()
-          });
-    
-      }
+        })
+            .then((response) => {
+                if (response.status !== 200) {
+                    localStorage.removeItem("email");
+                    localStorage.removeItem("cpf");
+                    localStorage.removeItem("senha");
+                    window.location.href = "/"
+                } else {
+                    return console.log("há uma pessoa logada!")
+                }
+
+                return response.json()
+            });
+
+    }
 
     render() {
         return (
@@ -58,12 +58,12 @@ class MenuLateral extends Component {
                     exact
                     to="/dashboard"
                     activeClassName="active"
-                    
+
                 >
                     <MenuItem style={{ color: "white" }} innerDivStyle={{ marginTop: "20px", paddingTop: "20px" }}>
                         <Icon>home</Icon>
                     </MenuItem>
-                </NavLink> 
+                </NavLink>
                 <NavLink
                     exact
                     to="/cliente"
@@ -80,6 +80,15 @@ class MenuLateral extends Component {
                 >
                     <MenuItem style={{ color: "white" }} innerDivStyle={{ marginTop: "20px", paddingTop: "20px" }}>
                         <Icon>supervisor_account</Icon>
+                    </MenuItem>
+                </NavLink>
+                <NavLink
+                    exact
+                    to="/processos"
+                    activeClassName="active"
+                >
+                    <MenuItem style={{ color: "white" }} innerDivStyle={{ marginTop: "20px", paddingTop: "20px" }}>
+                        <Icon>assignment</Icon>
                     </MenuItem>
                 </NavLink>
 

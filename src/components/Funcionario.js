@@ -84,6 +84,10 @@ class Funcionario extends Component {
     let listDisplay;
     if (this.state.tableData.length > 0) {
       listDisplay = <IntercessoraListagemFuncionario tableData={this.state.resultadoBusca} view={this.handleClick}></IntercessoraListagemFuncionario>
+    }else{
+      listDisplay = <div id="none-box">
+      <span id="name">Não há Funcionários cadastrados.</span>
+    </div>
     }
 
     return (
@@ -91,7 +95,7 @@ class Funcionario extends Component {
         <MenuLateral />
 
         <div id="none-box">
-          <span id="name">Meus Funcionario</span>
+          <span id="name">Meus Funcionarios</span>
         </div>
 
         <div className="clientes-page">

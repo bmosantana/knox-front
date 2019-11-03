@@ -9,6 +9,10 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import { Icon } from '@material-ui/core';
 import ModalCadastrarCliente from './ModalCadastrarCliente.js';
 import IntercessoraListagemCliente from './IntercessoraListagemCliente.js';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
 
 
 
@@ -82,6 +86,10 @@ class Cliente extends Component {
     let listDisplay;
     if (this.state.tableData.length > 0) {
       listDisplay = <IntercessoraListagemCliente tableData={this.state.resultadoBusca} view={this.handleClick}></IntercessoraListagemCliente>
+    } else {
+      listDisplay = <div id="none-box">
+        <span id="name">Não há clientes cadastrados.</span>
+      </div>
     }
 
     return (
@@ -112,6 +120,7 @@ class Cliente extends Component {
               }
             />
           </div>
+
 
           {/* listagem de fato */}
           {listDisplay}

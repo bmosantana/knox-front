@@ -5,3 +5,8 @@
 .MuiDialog-paperWidthSm-140 {
     max-width: 55vw!important;
 }
+
+.desc-cad{
+    font-size: 20px;
+    color: #8a2be2;
+}
