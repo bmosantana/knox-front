@@ -1,10 +1,6 @@
 //Página de listagem / busca de clientes
 import React, { Component } from 'react';
 import MenuLateral from './MenuLateral.js';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
 import Fab from '@material-ui/core/Fab';
 import './css/cliente.css'
 import IconButton from '@material-ui/core/IconButton';
@@ -12,7 +8,7 @@ import Input from '@material-ui/core/Input';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { Icon } from '@material-ui/core';
 import ModalCadastrarCliente from './ModalCadastrarCliente.js';
-import IntercessoraListagemCliente from './IntercessoraListagemCliente.js';
+import IntercessoraListagemProcessos from './IntercessoraListagemProcessos.js';
 
 import './css/dash.css';
 
@@ -39,12 +35,8 @@ class Processos extends Component {
 
     loadList() {
         let reverseList;
-        fetch(enderecoApi + "processoo/", {
-            method: "GET",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
+        fetch(enderecoApi + "processo/", {
+            method: "GET"
         })
             .then((response) => {
                 if (response.status !== 200) {
@@ -85,7 +77,7 @@ class Processos extends Component {
     render() {
         let listDisplay;
         if (this.state.tableData.length > 0) {
-            listDisplay = <IntercessoraListagemCliente tableData={this.state.resultadoBusca} view={this.handleClick}></IntercessoraListagemCliente>
+            listDisplay = <IntercessoraListagemProcessos tableData={this.state.resultadoBusca} view={this.handleClick}></IntercessoraListagemProcessos>
         } else {
             listDisplay = <div id="none-box">
             <span id="name">Não há Processos cadastrados.</span>

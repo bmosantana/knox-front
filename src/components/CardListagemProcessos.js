@@ -106,15 +106,15 @@ class CardListagemProcessos extends Component {
             <Card style={{ width: "50vw" }}>
               <CardContent>
                 <Typography gutterBottom variant="h5" component="h2">
-                  {this.props.processo.nome}
+                  {this.props.processo.assunto}
                 </Typography>
 
                 <Typography component="p">
-                  E-mail: {this.props.processo.email}
+                  Classe: {this.props.processo.classe}
                 </Typography>
 
                 <Typography component="p">
-                  Telefone Comercial: {this.props.processo.telefoneComercial}
+                  Número de processo: {this.props.processo.numeroProcesso}
                 </Typography>
               </CardContent>
               <CardActions id="acoes-card">
@@ -168,9 +168,9 @@ class CardListagemProcessos extends Component {
                       </Button>
           </DialogActions>
         </Dialog>
-
+{/* 
         <ModalEditarCliente usuario={this.props.cliente} handleClose={this.handleCloseEditar} editmodal={this.state.editmodal} click={(() => { this.setState({ editmodal: !this.state.editmodal }) })} />
-        <ModalVerMais usuario={this.props.cliente} handleClose={this.handleCloseVerMais} vermaismodal={this.state.vermaismodal} click={(() => { this.setState({ vermaismodal: !this.state.vermaismodal }) })} />
+        <ModalVerMais usuario={this.props.cliente} handleClose={this.handleCloseVerMais} vermaismodal={this.state.vermaismodal} click={(() => { this.setState({ vermaismodal: !this.state.vermaismodal }) })} /> */}
 
       </div>
     )

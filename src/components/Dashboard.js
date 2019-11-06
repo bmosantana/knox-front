@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import MenuLateral from './MenuLateral.js';
 import { Icon } from '@material-ui/core';
-import Card from '@material-ui/core/Card';
 import Fab from '@material-ui/core/Fab';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
 import ModalCadastrarProcesso from './ModalCadastrarProcesso.js';
 import IntercessoraListagemProcessos from './IntercessoraListagemProcessos.js';
 import './css/dash.css';
@@ -18,7 +15,6 @@ class Dashboard extends Component {
       usuario: '',
       cpf: '',
       email: '',
-
       tableData: [],
       resultadoBusca: [],
       modalStateAdd: false,
@@ -35,12 +31,12 @@ class Dashboard extends Component {
     let cpfLogado = localStorage.getItem("cpf");
     let emailLogado = localStorage.getItem("email");
     if (cpfLogado && emailLogado) {
+      this.loadListaProcessos();
       this.loadLogado(cpfLogado);
     } else {
       return console.log("Não é possivel achar o usuário logado!")
     }
 
-    this.loadListaProcessos();
 
   }
 
@@ -75,11 +71,7 @@ class Dashboard extends Component {
   loadListaProcessos() {
     let reverseList;
     fetch(enderecoApi + "processo/", {
-      method: "GET",
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
+      method: "GET"
     })
       .then((response) => {
         if (response.status !== 200) {
@@ -96,7 +88,7 @@ class Dashboard extends Component {
         console.log("R: " + resultado)
       });
 
-    console.log(this.state.tableData)
+    console.log("R: " + this.state.tableData)
   }
 
   handleSair = () => {
