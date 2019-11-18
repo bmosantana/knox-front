@@ -7,6 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
+import FormControl from '@material-ui/core/FormControl';
 
 import "./css/modalEditarcliente.css";
 
@@ -24,14 +25,7 @@ class ModalCadastrarProcesso extends Component {
                 assunto: '',
                 juiz: '',
                 local: '',
-                status: '',
-                complemento: '',
-                numero: '',
-                cidade: '',
-                UF: '',
-                logradouro: '',
-                nomeRua: '',
-                cep: '',
+                pdf: ''
 
             },
             errors: {
@@ -42,14 +36,7 @@ class ModalCadastrarProcesso extends Component {
                 assunto: '',
                 juiz: '',
                 local: '',
-                status: '',
-                complemento: '',
-                numero: '',
-                cidade: '',
-                UF: '',
-                logradouro: '',
-                nomeRua: '',
-                cep: '',
+                pdf: ''
             }
         };
 
@@ -143,74 +130,35 @@ class ModalCadastrarProcesso extends Component {
 
     };
 
-    handleChangeCep = (event) => {
+    handleChangePdf = (event) => {
         let usuario = this.state.usuario;
-        usuario.cep = event.target.value;
-        this.setState({ usuario: usuario });
-    };
-
-    handleChangeLogradouro = (event) => {
-        let usuario = this.state.usuario;
-        usuario.logradouro = event.target.value;
+        usuario.pdf = event.target.value;
         this.setState({ usuario: usuario });
 
-    };
-
-    handleChangeNomeRua = (event) => {
-        let usuario = this.state.usuario;
-        usuario.nomeRua = event.target.value;
-        this.setState({ usuario: usuario });
+        let errors = this.state.errors;
+        errors.pdf = ""
+        this.setState({ errors: errors });
 
     };
-
-    handleChangeComplemento = (event) => {
-        let usuario = this.state.usuario;
-        usuario.complemento = event.target.value;
-        this.setState({ usuario: usuario });
-
-    };
-
-    handleChangeNumero = (event) => {
-        let usuario = this.state.usuario;
-        usuario.numero = event.target.value;
-        this.setState({ usuario: usuario });
-
-    };
-
-    handleChangeCidade = (event) => {
-        let usuario = this.state.usuario;
-        usuario.cidade = event.target.value;
-        this.setState({ usuario: usuario });
-
-    };
-
-    handleChangeUf = (event) => {
-        let usuario = this.state.usuario;
-        usuario.UF = event.target.value;
-        this.setState({ usuario: usuario });
-
-    };
-
-
 
     handleSubmit = (event) => {
         console.log('ola')
         event.preventDefault();
         let valid = true;
         let errors = this.state.errors;
-        if (this.state.usuario.juiz.length < 2 || this.state.usuario.juiz.length > 256 ) {
+        if (this.state.usuario.juiz.length < 2 || this.state.usuario.juiz.length > 256) {
             errors.nome = "Nome do Juiz deve conter entre 2 e 256 caracteres."
             valid = false;
 
         }
 
-        if (this.state.usuario.classe.length < 2 || this.state.usuario.classe.length > 256 ) {
+        if (this.state.usuario.classe.length < 2 || this.state.usuario.classe.length > 256) {
             errors.nome = "Classe deve conter entre 2 e 256 caracteres."
             valid = false;
 
         }
 
-        if (this.state.usuario.assunto.length < 2 || this.state.usuario.assunto.length > 256 ) {
+        if (this.state.usuario.assunto.length < 2 || this.state.usuario.assunto.length > 256) {
             errors.nome = "Assunto deve conter entre 2 e 256 caracteres."
             valid = false;
 
@@ -234,67 +182,21 @@ class ModalCadastrarProcesso extends Component {
         //     console.log("CPF Inválido");
         // }
 
-        if (this.state.usuario.cep.length < 8 || this.state.usuario.cep.length > 8 || this.state.usuario.cep.length == 0) {
-            errors.cep = "CEP deve conter 8 digitos."
+        if (this.state.usuario.local.length < 3 || this.state.usuario.local.length > 20 || this.state.usuario.local.length == 0) {
+            errors.cep = "LOCAL deve conter 8 ou mais digitos."
             valid = false;
 
         }
 
+        if (this.state.usuario.pdf === null || this.state.usuario.local.length === '') {
+            errors.cep = "PDF não pode estar vazio."
+            valid = false;
 
+        }
 
         if (this.state.usuario.numeroProcesso.length < 3 || this.state.usuario.numeroProcesso.length > 20 || this.state.usuario.numeroProcesso.length == 0) {
             errors.telefoneComercial = "Número de Processo deve conter entre 3 e 20 digitos."
             valid = false;
-        }
-
-
-
-        if (this.state.usuario.logradouro.length < 3 || this.state.usuario.logradouro.length > 60 || this.state.usuario.logradouro.length == 0) {
-            errors.logradouro = "Logradouro deve conter entre 3 e 60 digitos."
-            valid = false;
-        }
-
-        if (this.state.usuario.nomeRua.length < 3 || this.state.usuario.nomeRua.length > 60 || this.state.usuario.nomeRua.length == 0) {
-            errors.nomeRua = "Nome da Rua deve conter entre 3 e 60 digitos."
-            valid = false;
-
-        }
-
-        if (this.state.usuario.numero.length == null || this.state.usuario.numero.length > 5 || this.state.usuario.numero.length == 0) {
-            errors.numero = "Número da Casa deve conter entre 1 e 5 digitos."
-            valid = false;
-
-        }
-
-        if (this.state.usuario.cidade.length < 3 || this.state.usuario.cidade.length > 70 || this.state.usuario.cidade.length == 0) {
-            errors.cidade = "Cidade deve conter entre 3 e 70 digitos."
-            valid = false;
-
-        }
-
-        if (this.state.usuario.UF.length < 2 || this.state.usuario.UF.length > 2 || this.state.usuario.UF.length == 0) {
-            errors.UF = "UF deve conter 2 digitos."
-            valid = false;
-
-        }
-
-        if (this.state.usuario.cep.length === 8) {
-            fetch('https://viacep.com.br/ws/' + this.state.usuario.cep + '/json/', {
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                },
-                method: 'GET'
-            }).then((response) => {
-                return response.json();
-            })
-
-                .then((result) => {
-                    if (result.cep == undefined) {
-                        errors.cep = "CEP inválido ou inexistente.";
-                        valid = false;
-                    }
-                })
         }
 
         if (valid === true) {
@@ -308,12 +210,6 @@ class ModalCadastrarProcesso extends Component {
 
     insertUser = () => {
         let usuario = this.state.usuario;
-        usuario.local = usuario.logradouro + "," +
-            usuario.nomeRua + "," +
-            usuario.complemento + "," +
-            usuario.cidade + "," +
-            usuario.UF + "," +
-            usuario.cep
         fetch(enderecoApi + "processo/", {
             method: "POST",
             headers: {
@@ -359,7 +255,7 @@ class ModalCadastrarProcesso extends Component {
                     <DialogContent>
                         <form onSubmit={this.handleSubmit} className="form-style">
 
-                            <p className="desc-cad">Dados Pessoais</p>
+                            <p className="desc-cad">Dados do Processo</p>
                             <TextField
                                 className="textfield-cli"
                                 id="numeroProcesso"
@@ -438,92 +334,34 @@ class ModalCadastrarProcesso extends Component {
                                 style={{ width: "100%" }}
                             /><br />
 
+                            <FormControl style={{ width: "100%" }}>
+                                <p className="label-titulo">PDF do Processo*</p>
+                                <TextField
+                                    id="pdf"
+                                    placeholder="PDF do Processo"
+                                    margin="normal"
+                                    type="file"
+                                    error={this.state.errors.pdf !== '' ? true : false}
+                                    helperText={this.state.errors.pdf !== '' ? this.state.errors.pdf : ''}
+                                    value={this.state.usuario.pdf}
+                                    onChange={e => { this.handleChangePdf(e) }}
+                                    style={{ width: "100%" }}
+                                />
+                            </FormControl>
+
                             <p className="desc-cad marg-desc">Endereço</p>
                             <TextField
-                                id="cep"
-                                label="CEP*"
-                                error={this.state.errors.cep !== '' ? true : false}
-                                helperText={this.state.errors.cep !== '' ? this.state.errors.cep : ''}
+                                id="local"
+                                label="Local*"
+                                error={this.state.errors.local !== '' ? true : false}
+                                helperText={this.state.errors.local !== '' ? this.state.errors.local : ''}
                                 margin="normal"
                                 type="text"
-                                value={this.state.usuario.cep}
-                                onChange={e => { this.handleChangeCep(e) }}
+                                value={this.state.usuario.local}
+                                onChange={e => { this.handleChangeLocal(e) }}
                                 style={{ width: "100%" }}
                             />
 
-                            <TextField
-                                id="logradouro"
-                                label="Logradouro*"
-                                margin="normal"
-                                type="text"
-                                error={this.state.errors.logradouro !== '' ? true : false}
-                                helperText={this.state.errors.logradouro !== '' ? this.state.errors.logradouro : ''}
-                                value={this.state.usuario.logradouro}
-                                onChange={e => { this.handleChangeLogradouro(e) }}
-                                style={{ width: "100%" }}
-                            />
-
-                            <TextField
-                                id="nomeRua"
-                                label="Nome Rua*"
-                                margin="normal"
-                                type="text"
-                                error={this.state.errors.nomeRua !== '' ? true : false}
-                                helperText={this.state.errors.nomeRua !== '' ? this.state.errors.nomeRua : ''}
-                                value={this.state.usuario.nomeRua}
-                                onChange={e => { this.handleChangeNomeRua(e) }}
-                                style={{ width: "100%" }}
-                            />
-
-                            <TextField
-                                id="numero"
-                                label="Número*"
-                                margin="normal"
-                                type="text"
-                                error={this.state.errors.numero !== '' ? true : false}
-                                helperText={this.state.errors.numero !== '' ? this.state.errors.numero : ''}
-                                value={this.state.usuario.numero}
-                                onChange={e => { this.handleChangeNumero(e) }}
-                                style={{ width: "100%" }}
-                            />
-
-                            <TextField
-                                id="complemento"
-                                label="Complemento"
-                                margin="normal"
-                                type="text"
-                                error={this.state.errors.complemento !== '' ? true : false}
-                                helperText={this.state.errors.complemento !== '' ? this.state.errors.complemento : ''}
-                                value={this.state.usuario.complemento}
-                                onChange={e => { this.handleChangeComplemento(e) }}
-                                style={{ width: "100%" }}
-                            />
-
-                            <TextField
-                                id="cidade"
-                                label="Cidade*"
-                                margin="normal"
-                                type="text"
-                                error={this.state.errors.cidade !== '' ? true : false}
-                                helperText={this.state.errors.cidade !== '' ? this.state.errors.cidade : ''}
-                                value={this.state.usuario.cidade}
-                                onChange={e => { this.handleChangeCidade(e) }}
-                                style={{ width: "100%" }}
-                            />
-
-                            <TextField
-                                id="UF"
-                                label="Estado*"
-                                margin="normal"
-                                type="text"
-                                error={this.state.errors.UF !== '' ? true : false}
-                                helperText={this.state.errors.UF !== '' ? this.state.errors.UF : ''}
-                                value={this.state.usuario.UF}
-                                onChange={e => { this.handleChangeUf(e) }}
-                                style={{ width: "100%" }}
-                            />
-
-                            
                         </form>
                     </DialogContent>
                     <DialogActions>

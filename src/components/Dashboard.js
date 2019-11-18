@@ -43,29 +43,29 @@ class Dashboard extends Component {
   loadLogado(cpf) {
     var cpfLog = cpf.replace(/[\\"]/g, '');
     console.log(cpfLog)
-    fetch(enderecoApi + "funcionario/" + cpfLog, {
+    fetch(enderecoApi + "funcionario/" + cpfLog , {
       method: "GET",
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       }
     })
-      .then((response) => {
-        if (response.status !== 200) {
-          console.log("GET de Funcionario falhou.")
-        } else {
-          console.log("GET de FUNCIONARIO realizado com SUCESSO.")
-        }
+    .then((response) => {
+      if (response.status !== 200) {
+        console.log("GET de Funcionario falhou.")
+      } else {
+        console.log("GET de FUNCIONARIO realizado com SUCESSO.")
+      }
 
         return response.json()
-      })
-      .then((resultado) => {
-
-        // let nome = resultado[0].nome;
-        let nome = "teste";
-        this.setState({ usuario: nome });
-        console.log(this.state.usuario);
-      });
+    })
+    .then((result) => {
+      // let nome = resultado[0].nome;
+      console.log(result);
+      let nome = "teste";
+      this.setState({ usuario: nome });
+      console.log(this.state.usuario);
+    });
 
   }
 
@@ -130,7 +130,8 @@ class Dashboard extends Component {
         <div className="main-dash">
           <div className="titulo-dash">
             <div className="apresentacao">
-              <p id="titulo-form">Bem-Vindo ao Knox, <span id="name">{this.state.usuario}</span></p>
+              {/* , <span id=" titulo-form name">{this.state.usuario}</span> */}
+              <p id="name">Bem-Vindo ao Knox</p>
             </div>
             <div className="sair">
               <p onClick={this.handleSair}>sair</p>
