@@ -61,7 +61,8 @@ class Dashboard extends Component {
       })
       .then((resultado) => {
 
-        let nome = resultado[0].nome;
+        // let nome = resultado[0].nome;
+        let nome = "teste";
         this.setState({ usuario: nome });
         console.log(this.state.usuario);
       });
