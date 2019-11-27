@@ -119,7 +119,7 @@ class Dashboard extends Component {
       listDisplay = <IntercessoraListagemProcessos tableData={this.state.resultadoBusca} view={this.handleClick}></IntercessoraListagemProcessos>
     } else {
       listDisplay = < div id="none-box" >
-        <span id="name">Não há clientes cadastrados.</span>
+        <span id="name">Não há Processos cadastrados.</span>
       </div >
     }
 
