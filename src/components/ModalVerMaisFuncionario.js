@@ -10,7 +10,7 @@ import "./css/modalEditarcliente.css";
 
 const enderecoApi = "https://knoxapp180120.herokuapp.com/";
 
-class ModalVerMais extends Component {
+class ModalVerMaisFuncionario extends Component {
   constructor(props) {
     super(props)
     this.state={
@@ -135,4 +135,4 @@ class ModalVerMais extends Component {
   }
 }
 
-export default ModalVerMais;
+export default ModalVerMaisFuncionario;

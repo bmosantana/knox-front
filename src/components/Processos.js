@@ -7,7 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Input from '@material-ui/core/Input';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { Icon } from '@material-ui/core';
-import ModalCadastrarCliente from './ModalCadastrarCliente.js';
+import ModalCadastrarProcesso from './ModalCadastrarProcesso.js';
 import IntercessoraListagemProcessos from './IntercessoraListagemProcessos.js';
 
 import './css/dash.css';
@@ -127,7 +127,7 @@ class Processos extends Component {
                     </Fab>
                 </div>
 
-                <ModalCadastrarCliente handleClose={this.handleCloseCadastrarCliente} createmodal={this.state.createmodal} click={(() => { this.setState({ createmodal: !this.state.createmodal }) })} />
+                <ModalCadastrarProcesso handleClose={this.handleCloseCadastrarCliente} createmodal={this.state.createmodal} click={(() => { this.setState({ createmodal: !this.state.createmodal }) })} />
             </div>
 
         )

@@ -12,11 +12,14 @@ import FormControl from '@material-ui/core/FormControl';
 import "./css/modalEditarcliente.css";
 
 const enderecoApi = "https://knoxapp180120.herokuapp.com/";
+const enderecoPdf = "https://knoxapp180120.herokuapp.com/anexo/";
 
 class ModalCadastrarProcesso extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            clientes: [],
+            advogados: [],
             usuario: {
                 numeroProcesso: '',
                 cpfCliente: '',
@@ -25,7 +28,8 @@ class ModalCadastrarProcesso extends Component {
                 assunto: '',
                 juiz: '',
                 local: '',
-                pdf: ''
+                pdf: '',
+                status: ''
 
             },
             errors: {
@@ -36,9 +40,64 @@ class ModalCadastrarProcesso extends Component {
                 assunto: '',
                 juiz: '',
                 local: '',
-                pdf: ''
+                pdf: '',
+                status: ''
             }
         };
+
+    }
+
+    componentWillMount() {
+        this.getCpfsClients();
+        this.getCpfdAdvogados();
+    }
+
+    getCpfsClients = () => {
+        fetch(enderecoApi + "cliente/", {
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+            .then((response) => {
+                if (response.status !== 200) {
+                    console.log("GET de CLIENTE falhou. 00")
+                } else {
+                    console.log("GET realizado com SUCESSO. 00")
+                }
+
+                return response.json()
+            })
+            .then((resultado) => {
+                let reverseList = resultado.reverse();
+                this.setState({ clientes: reverseList })
+                console.log('CLi -->' + this.state.clientes)
+            })
+    }
+
+    getCpfdAdvogados = () => {
+        fetch(enderecoApi + "funcionario/", {
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+            .then((response) => {
+                if (response.status !== 200) {
+                    console.log("GET de CLIENTE falhou. 00")
+                } else {
+                    console.log("GET realizado com SUCESSO.")
+                }
+
+                return response.json()
+            })
+            .then((resultado) => {
+                let reverseList = resultado.reverse();
+                this.setState({ advogados: reverseList })
+                console.log('Adv -->' + this.state.advogados)
+            })
 
     }
 
@@ -147,19 +206,19 @@ class ModalCadastrarProcesso extends Component {
         let valid = true;
         let errors = this.state.errors;
         if (this.state.usuario.juiz.length < 2 || this.state.usuario.juiz.length > 256) {
-            errors.nome = "Nome do Juiz deve conter entre 2 e 256 caracteres."
+            errors.juiz = "Nome do Juiz deve conter entre 2 e 256 caracteres."
             valid = false;
 
         }
 
         if (this.state.usuario.classe.length < 2 || this.state.usuario.classe.length > 256) {
-            errors.nome = "Classe deve conter entre 2 e 256 caracteres."
+            errors.classe = "Classe deve conter entre 2 e 256 caracteres."
             valid = false;
 
         }
 
         if (this.state.usuario.assunto.length < 2 || this.state.usuario.assunto.length > 256) {
-            errors.nome = "Assunto deve conter entre 2 e 256 caracteres."
+            errors.assunto = "Assunto deve conter entre 2 e 256 caracteres."
             valid = false;
 
         }
@@ -182,25 +241,26 @@ class ModalCadastrarProcesso extends Component {
         //     console.log("CPF Inválido");
         // }
 
-        if (this.state.usuario.local.length < 3 || this.state.usuario.local.length > 20 || this.state.usuario.local.length == 0) {
-            errors.cep = "LOCAL deve conter 8 ou mais digitos."
+        if (this.state.usuario.local.length < 8 || this.state.usuario.local.length == 0) {
+            errors.local = "LOCAL deve conter 8 ou mais digitos."
             valid = false;
 
         }
 
-        if (this.state.usuario.pdf === null || this.state.usuario.local.length === '') {
-            errors.cep = "PDF não pode estar vazio."
-            valid = false;
+        // if (this.state.usuario.pdf === null || this.state.usuario.local.length === '') {
+        //     errors.pdf = "PDF não pode estar vazio."
+        //     valid = false;
 
-        }
+        // }
 
-        if (this.state.usuario.numeroProcesso.length < 3 || this.state.usuario.numeroProcesso.length > 20 || this.state.usuario.numeroProcesso.length == 0) {
-            errors.telefoneComercial = "Número de Processo deve conter entre 3 e 20 digitos."
+        if (this.state.usuario.numeroProcesso.length === 0 || this.state.usuario.numeroProcesso.length > 20) {
+            errors.numeroProcesso = "Número de Processo deve conter entre 1 e 20 digitos."
             valid = false;
         }
 
         if (valid === true) {
-            this.insertUser();
+            this.insertProcess();
+            // this.insertPdf();
         } else {
             console.log(this.state.errors);
             return console.log("não podemos enviar os dados");
@@ -208,7 +268,7 @@ class ModalCadastrarProcesso extends Component {
     }
 
 
-    insertUser = () => {
+    insertProcess = () => {
         let usuario = this.state.usuario;
         fetch(enderecoApi + "processo/", {
             method: "POST",
@@ -233,13 +293,42 @@ class ModalCadastrarProcesso extends Component {
                     alert("Verifique se os dados estão corretos entes de finalizar o seu cadastro.")
                 } else {
                     alert("Cadastro realizado com SUCESSO.")
-                    window.location.reload();
+                    this.insertPdf();
+                    // window.location.reload();
                 }
                 return console.log(response);
             });
 
 
     };
+
+    insertPdf = () => {
+        let usuario = this.state.usuario;
+        let formDataPdf = new FormData();
+        formDataPdf.append('Arquivo', usuario.pdf);
+        
+        if (usuario.numeroProcesso !== null || usuario.numeroProcesso !== '') {
+            fetch(enderecoPdf + usuario.numeroProcesso, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: formDataPdf
+            })
+                .then((response) => {
+                    if (response.status !== 200) {
+                        alert("Verifique se os dados estão corretos antes de finalizar o seu cadastro.")
+                    } else {
+                        alert("Cadastro realizado com SUCESSO.")
+                        window.location.reload();
+                    }
+                    return console.log(response);
+                });
+        } else {
+            alert("Pode conter algum erro no Número do Processo.")
+        }
+    };
+
 
     render() {
         return (
@@ -253,6 +342,9 @@ class ModalCadastrarProcesso extends Component {
                 >
                     <DialogTitle id="scroll-dialog-title">Cadastrar Novo Processo</DialogTitle>
                     <DialogContent>
+
+
+
                         <form onSubmit={this.handleSubmit} className="form-style">
 
                             <p className="desc-cad">Dados do Processo</p>
@@ -270,6 +362,20 @@ class ModalCadastrarProcesso extends Component {
                                 style={{ width: "100%" }}
                             />
 
+                            <InputLabel htmlFor="age-native-simple">Status do Processo:</InputLabel>
+                            <Select
+                                id="status"
+                                label="status"
+                                native
+                                value={this.state.usuario.status}
+                                onChange={e => { this.handleChangeStatus(e) }}
+                                style={{ width: "100%" }}
+                            >
+                                <option value="null">Selecione...</option>
+                                <option value="1">Aberto / Em Andamento</option>
+                                <option value="0">Fechado</option>
+                            </Select>
+
                             <InputLabel htmlFor="age-native-simple">Cliente:</InputLabel>
                             <Select
                                 id="cpfCliente"
@@ -280,8 +386,11 @@ class ModalCadastrarProcesso extends Component {
                                 style={{ width: "100%" }}
                             >
                                 <option value="null">Selecione...</option>
-                                <option value="0">Outro...</option>
-                                <option value="1">Advogado(a)/Gestor(a)/Sócio(a)</option>
+                                {this.state.clientes.map((item, i) =>
+
+                                    <option key={i} value={item.cpf}>{item.nome} </option>
+
+                                )}
                             </Select>
 
                             <InputLabel htmlFor="age-native-simple">Advogado:</InputLabel>
@@ -289,13 +398,18 @@ class ModalCadastrarProcesso extends Component {
                                 id="cpfAdvogado"
                                 label="cpfAdvogado"
                                 native
-                                value={this.state.usuario.cpfCliente}
+                                value={this.state.usuario.cpfAdvogado}
                                 onChange={e => { this.handleChangeCpfAdvogado(e) }}
                                 style={{ width: "100%" }}
                             >
                                 <option value="null">Selecione...</option>
-                                <option value="0">Outro...</option>
-                                <option value="1">Advogado(a)/Gestor(a)/Sócio(a)</option>
+
+                                {this.state.advogados.map((item, i) =>
+
+                                    <option key={i} value={item.cpf}>{item.nome} </option>
+
+                                )}
+
                             </Select>
 
                             <TextField
@@ -363,6 +477,7 @@ class ModalCadastrarProcesso extends Component {
                             />
 
                         </form>
+
                     </DialogContent>
                     <DialogActions>
                         <Button variant="contained" color="primary" className="btn" onClick={this.props.handleClose}>

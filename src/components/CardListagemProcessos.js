@@ -8,8 +8,8 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import ModalEditarCliente from './ModalEditarCliente.js';
-import ModalVerMais from './ModalVerMais.js';
+import ModalEditarProcesso from './ModalEditarProcesso.js';
+import ModalVerMaisProcesso from './ModalVerMaisProcesso.js';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -55,7 +55,7 @@ class CardListagemProcessos extends Component {
 
 
   handleCallDeleteApi = () => {
-    fetch(enderecoApi + "cliente/" + this.props.processo.cpf , {
+    fetch(enderecoApi + "processo/" + this.props.processo.numeroProcesso , {
       method: "DELETE",
       headers: {
         'Accept': 'application/json',
@@ -85,7 +85,7 @@ class CardListagemProcessos extends Component {
   };
 
   handleModalDelete = () => {
-    this.setState({ modalDeleteCliente: !this.state.modalDeleteCliente });
+    this.setState({ modalDeleteProcesso: !this.state.modalDeleteProcesso });
   };
 
   handleCloseEditar = () => {
@@ -168,9 +168,9 @@ class CardListagemProcessos extends Component {
                       </Button>
           </DialogActions>
         </Dialog>
-{/* 
-        <ModalEditarCliente usuario={this.props.cliente} handleClose={this.handleCloseEditar} editmodal={this.state.editmodal} click={(() => { this.setState({ editmodal: !this.state.editmodal }) })} />
-        <ModalVerMais usuario={this.props.cliente} handleClose={this.handleCloseVerMais} vermaismodal={this.state.vermaismodal} click={(() => { this.setState({ vermaismodal: !this.state.vermaismodal }) })} /> */}
+
+        <ModalEditarProcesso usuario={this.props.processo} handleClose={this.handleCloseEditar} editmodal={this.state.editmodal} click={(() => { this.setState({ editmodal: !this.state.editmodal }) })} />
+        <ModalVerMaisProcesso usuario={this.props.processo} handleClose={this.handleCloseVerMais} vermaismodal={this.state.vermaismodal} click={(() => { this.setState({ vermaismodal: !this.state.vermaismodal }) })} />
 
       </div>
     )
