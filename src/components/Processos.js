@@ -49,7 +49,7 @@ class Processos extends Component {
             })
             .then((resultado) => {
                 reverseList = resultado.reverse();
-                this.setState({ tableData: reverseList, resultadoBusca: reverseList })
+                this.setState({ tableData: resultado, resultadoBusca: resultado })
             });
     }
 
@@ -96,7 +96,7 @@ class Processos extends Component {
                     {/* Campo de buscar e botão de adicionar */}
                     <div id="campo-busca">
                         <Input
-                            placeholder="Digite o nome do CLIENTE que procura"
+                            placeholder="Digite o Número do Processo que procura"
                             id="pesquisa"
                             type={'text'}
                             onChange={this.handleChangeBusca}

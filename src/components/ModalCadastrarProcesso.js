@@ -28,7 +28,10 @@ class ModalCadastrarProcesso extends Component {
                 assunto: '',
                 juiz: '',
                 local: '',
-                pdf: '',
+                pdf:{
+                    arquivo: '',
+                    texto: ''
+                },
                 status: ''
 
             },
@@ -191,7 +194,8 @@ class ModalCadastrarProcesso extends Component {
 
     handleChangePdf = (event) => {
         let usuario = this.state.usuario;
-        usuario.pdf = event.target.value;
+        usuario.pdf.arquivo = event.target.files[0];
+        usuario.pdf.texto = event.target.value;
         this.setState({ usuario: usuario });
 
         let errors = this.state.errors;
@@ -305,14 +309,11 @@ class ModalCadastrarProcesso extends Component {
     insertPdf = () => {
         let usuario = this.state.usuario;
         let formDataPdf = new FormData();
-        formDataPdf.append('Arquivo', usuario.pdf);
+        formDataPdf.append('Arquivo', usuario.pdf.arquivo);
         
         if (usuario.numeroProcesso !== null || usuario.numeroProcesso !== '') {
             fetch(enderecoPdf + usuario.numeroProcesso, {
                 method: "POST",
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
                 body: formDataPdf
             })
                 .then((response) => {
@@ -457,7 +458,7 @@ class ModalCadastrarProcesso extends Component {
                                     type="file"
                                     error={this.state.errors.pdf !== '' ? true : false}
                                     helperText={this.state.errors.pdf !== '' ? this.state.errors.pdf : ''}
-                                    value={this.state.usuario.pdf}
+                                    value={this.state.usuario.pdf.texto}
                                     onChange={e => { this.handleChangePdf(e) }}
                                     style={{ width: "100%" }}
                                 />
