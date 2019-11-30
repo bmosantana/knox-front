@@ -13,13 +13,16 @@ const enderecoApi = "https://knoxapp180120.herokuapp.com/";
 class ModalVerMaisProcesso extends Component {
   constructor(props) {
     super(props)
-    this.state={
+    this.state = {
       adm: '',
       tipofuncionario: ''
     }
   }
 
-
+  handleDownloadPdf = () =>{
+    window.open(this.props.usuario.url, '_blank');
+  }
+  
   render() {
     return (
       <div>
@@ -37,7 +40,7 @@ class ModalVerMaisProcesso extends Component {
             <p className="desc-cad">Dados do Processo</p>
 
             <Typography component="p">
-              Status do Processo: {this.props.usuario.status == "1"? "Aberto / Em Andamento" : "Fechado"}
+              Status do Processo: {this.props.usuario.status == "1" ? "Aberto / Em Andamento" : "Fechado"}
             </Typography>
 
             <Typography component="p">
@@ -64,6 +67,14 @@ class ModalVerMaisProcesso extends Component {
               Local: {this.props.usuario.local}
             </Typography>
 
+            <p className="desc-cad">PDF</p>
+            <Button
+              variant="contained"
+              color="primary"
+              className="btn"
+              onClick={this.handleDownloadPdf}>
+              Fazer Download
+            </Button>
 
           </DialogContent>
           <DialogActions>
