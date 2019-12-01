@@ -7,6 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
+import FormControl from '@material-ui/core/FormControl';
 import "./css/modalEditarcliente.css";
 
 
@@ -28,10 +29,19 @@ class ModalEditarProcesso extends Component {
         assunto: '',
         juiz: '',
         local: '',
-        pdf: '',
+        pdf: {
+          arquivo: '',
+          texto: ''
+        },
         status: ''
       },
       errorBoolean: false,
+      pdf: {
+        arquivo: '',
+        texto: ''
+      },
+      editarPdf: false,
+      modalEditarPdf: false,
     }
   }
 
@@ -178,15 +188,27 @@ class ModalEditarProcesso extends Component {
   };
 
   handleChangePdf = (event) => {
-    let usuario = this.state.usuario;
-    usuario.pdf = event.target.value;
-    this.setState({ usuario: usuario });
+    let pdf = this.state.pdf;
+    pdf.arquivo = event.target.files[0];
+    pdf.texto = event.target.value;
+    this.setState({ pdf: pdf });
 
     let errors = this.state.errors;
     errors.pdf = ""
     this.setState({ errors: errors });
 
   };
+
+  handleCallEditarPdf = (event) => {
+    this.setState({ editarPdf: true });
+
+    this.handleSubmit(event)
+  }
+
+  handleModalEditarPDf = () => {
+    this.setState({ modalEditarPdf: !this.state.modalEditarPdf });
+  }
+
   handleSubmit = (event) => {
     console.log('ola')
     event.preventDefault();
@@ -277,6 +299,9 @@ class ModalEditarProcesso extends Component {
       .then((response) => {
         if (response.status !== 200) {
           alert("Verifique se os dados estão corretos entes de finalizar o seu cadastro.")
+          if (this.state.editarPdf === true) {
+            this.editPdf()
+          }
         } else {
           alert("Edição realizado com SUCESSO.")
           window.location.reload();
@@ -290,31 +315,21 @@ class ModalEditarProcesso extends Component {
   editPdf = () => {
     let usuario = this.state.usuario;
     let formDataPdf = new FormData();
-    formDataPdf.append('Arquivo', usuario.pdf);
+    formDataPdf.append('Arquivo', this.pdf.arquivo);
 
-    if (usuario.numeroProcesso !== null || usuario.numeroProcesso !== '') {
-      fetch(enderecoPdf + usuario.numeroProcesso, {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: formDataPdf
-      })
-        .then((response) => {
-          if (response.status !== 200) {
-            alert("Verifique se os dados estão corretos antes de finalizar o seu cadastro.")
-          } else {
-            alert("Cadastro realizado com SUCESSO.")
-            //window.location.reload();
-          }
-          return console.log(response);
-        });
-    } else {
-      alert("Pode conter algum erro no Número do Processo.")
-    }
-
-
-
+    fetch(enderecoPdf + usuario.numeroProcesso, {
+      method: "POST",
+      body: formDataPdf
+    })
+      .then((response) => {
+        if (response.status !== 200) {
+          alert("Verifique se os dados estão corretos antes de finalizar o seu cadastro.")
+        } else {
+          alert("Cadastro realizado com SUCESSO.")
+          window.location.reload();
+        }
+        return console.log(response);
+      });
   };
 
   handleClose = () => {
@@ -448,6 +463,25 @@ class ModalEditarProcesso extends Component {
                 onChange={e => { this.handleChangeLocal(e) }}
                 style={{ width: "100%" }}
               />
+
+              <p className="desc-cad marg-desc">PDF</p>
+              <p>PDF Salvo atualmente: {this.state.usuario.numeroProcesso}.pdf</p>
+
+              <FormControl style={{ width: "100%" }}>
+                <p className="label-titulo">PDF do Processo</p>
+                <TextField
+                  id="pdf"
+                  placeholder="PDF do Processo"
+                  margin="normal"
+                  type="file"
+                  // error={this.state.errors.pdf !== '' ? true : false}
+                  // helperText={this.state.errors.pdf !== '' ? this.state.errors.pdf : ''}
+                  value={this.state.pdf.texto}
+                  onChange={e => { this.handleChangePdf(e) }}
+                  style={{ width: "100%" }}
+                />
+              </FormControl>
+
             </form>
           </DialogContent>
           <DialogActions>
@@ -455,11 +489,34 @@ class ModalEditarProcesso extends Component {
               Cancelar
             </Button>
 
-            <Button variant="contained" color="primary" className="btn" type="submit" value="Submit" onClick={this.handleSubmit}>
+            <Button variant="contained" color="primary" className="btn" type="submit" value="Submit" onClick={this.handleModalEditarPDf}>
               Enviar
             </Button>
           </DialogActions>
         </Dialog>
+
+        <Dialog
+          open={this.state.modalEditarPdf}
+          onClose={this.handleModalEditarPDf}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">
+            {"Deseja realmente deletar esse Processo?"}
+          </DialogTitle>
+          <DialogContent>
+            Deseja EDITAR o Arquivo(PDF) do Processo?
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.handleCallEditarPdf} color="primary">
+              SIM
+                      </Button>
+            <Button onClick={this.handleSubmit} color="primary" autoFocus>
+              NÃO
+                      </Button>
+          </DialogActions>
+        </Dialog>
+
       </div>
     );
   }

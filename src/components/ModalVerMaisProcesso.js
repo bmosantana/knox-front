@@ -19,10 +19,10 @@ class ModalVerMaisProcesso extends Component {
     }
   }
 
-  handleDownloadPdf = () =>{
+  handleDownloadPdf = () => {
     window.open(this.props.usuario.url, '_blank');
   }
-  
+
   render() {
     return (
       <div>
@@ -68,12 +68,14 @@ class ModalVerMaisProcesso extends Component {
             </Typography>
 
             <p className="desc-cad">PDF</p>
+            <p>PDF Salvo atualmente: {this.props.usuario.numeroProcesso}.pdf</p>
+
             <Button
               variant="contained"
               color="primary"
               className="btn"
               onClick={this.handleDownloadPdf}>
-              Fazer Download
+              Download do PDF
             </Button>
 
           </DialogContent>
