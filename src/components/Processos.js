@@ -12,7 +12,7 @@ import IntercessoraListagemProcessos from './IntercessoraListagemProcessos.js';
 
 import './css/dash.css';
 
-const enderecoApi = "http://knoxapp180120.herokuapp.com/";
+const enderecoApi = "https://knoxapp180120.herokuapp.com/";
 
 class Processos extends Component {
 

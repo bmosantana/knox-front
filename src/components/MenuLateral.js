@@ -8,7 +8,7 @@ import Icon from '@material-ui/core/Icon';
 // import IconMenu from 'material-ui/IconMenu';
 import './css/menuLateral.css';
 
-const enderecoApi = "http://knoxapp180120.herokuapp.com/";
+const enderecoApi = "https://knoxapp180120.herokuapp.com/";
 
 class MenuLateral extends Component {
     constructor(props) {
