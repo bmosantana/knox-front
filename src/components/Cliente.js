@@ -16,7 +16,7 @@ import Typography from '@material-ui/core/Typography';
 
 
 
-const enderecoApi = "http://knoxapp180120.herokuapp.com/";
+const enderecoApi = "https://knoxapp180120.herokuapp.com/";
 
 class Cliente extends Component {
 
