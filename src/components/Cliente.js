@@ -13,6 +13,7 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import Header from './Header.js';
 
 
 
@@ -94,6 +95,7 @@ class Cliente extends Component {
 
     return (
       <div>
+        <Header></Header>
         <MenuLateral />
 
         <div id="none-box">

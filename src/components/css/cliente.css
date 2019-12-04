@@ -1,3 +1,13 @@
+.card {
+    width: 100%;
+    max-width: 20vw;
+}
+
+#alls{
+    width: calc(90vw - 8%);
+    margin-left: 8%;
+}
+
 .clientes-page{
     width: 90vw;
     padding-left: 20px!important;

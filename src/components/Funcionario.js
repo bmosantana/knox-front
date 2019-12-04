@@ -9,6 +9,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import { Icon } from '@material-ui/core';
 import ModalCadastrarFuncionario from './ModalCadastrarFuncionario.js';
 import IntercessoraListagemFuncionario from './IntercessoraListagemFuncionario.js';
+import Header from './Header.js';
 
 
 
@@ -93,6 +94,7 @@ class Funcionario extends Component {
     return (
       <div>
         <MenuLateral />
+        <Header></Header>
 
         <div id="none-box">
           <span id="name">Meus Funcionarios</span>

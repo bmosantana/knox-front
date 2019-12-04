@@ -1,12 +1,14 @@
-.avatar{
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: white;
+.tollbar{
+    background-color: #48d1cc!important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.1);
 }
 
-.tollbar{
-    background-color: #8a2be2!important;
-    width: 100vw!important; 
-    height: 10vh!important;
+.tollbar-wrapper {
+    display: block;
+    content: " ";
+    height: 60px;
 }

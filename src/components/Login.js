@@ -10,6 +10,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import './css/login.css'
 import { request } from 'https';
+import Logo from '../imagens/logo.png'
 
 
 const enderecoApi = "https://knoxapp180120.herokuapp.com/";
@@ -151,6 +152,7 @@ class Login extends Component {
         return (
             <div className="login">
                 <div className="center-form">
+                    <img src={Logo} id="logo"></img>
                     <FormControl>
                         <TextField
                             id="cpf"

@@ -7,17 +7,23 @@ import Icon from '@material-ui/core/Icon';
 // import avatar from '../imagens/avatar.png';
 // import IconMenu from 'material-ui/IconMenu';
 import './css/menuLateral.css';
+import Logo from '../imagens/logo_branco.png'
 
 const enderecoApi = "https://knoxapp180120.herokuapp.com/";
 
 class MenuLateral extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            email: '{{email}}'
+        }
     }
+    
 
     componentWillMount() {
         let cpfLogado = localStorage.getItem("cpf");
         let emailLogado = localStorage.getItem("email");
+        
         if (cpfLogado && emailLogado) {
             this.loadLogado(cpfLogado);
         } else {
@@ -53,7 +59,8 @@ class MenuLateral extends Component {
 
     render() {
         return (
-            <Drawer open={this.props.collapsed} containerStyle={{ paddingTop: "70px", backgroundColor: "#8a2be2", width: "auto", overflow: "hidden" }} className="menu">
+            <Drawer open={this.props.collapsed} containerStyle={{ textAlign: "center", paddingTop: "70px", backgroundColor: "#8a2be2", width: "auto", overflow: "hidden" }} className="menu">
+                <img src={Logo} style={{maxWidth: "45px", margin: "auto"}}></img>
                 <NavLink
                     exact
                     to="/dashboard"

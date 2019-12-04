@@ -8,13 +8,14 @@
 }
 
 .center-form {
-    width: 20vw;
-    height: 40vh;
+    width: auto;
+    height: auto;
     display: flex;
+    flex-direction: column;;
     justify-content: center;
     align-items: center;
     background-color: white;
-    padding: 30px;
+    padding: 20px 30px;
     border-radius: 2%;
 }
 

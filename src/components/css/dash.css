@@ -6,18 +6,8 @@
 }
 
 #alls{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    flex-flow: wrap;
-    width: 90vw;
+    width: calc(90vw - 8%);
     margin-left: 8%;
-}
-
-#alls div{
-    margin-top: 1%;
-    margin-right: 2%;
-    margin-bottom: 1%;
 }
 
 .titulo-dash {

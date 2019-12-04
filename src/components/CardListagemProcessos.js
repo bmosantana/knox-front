@@ -99,11 +99,10 @@ class CardListagemProcessos extends Component {
 
   render() {
     return (
-      <div>
-        <div className="clientes-page">
+      <div className="card">
           {/* listagem de fato */}
           <div id="lista-clientes">
-            <Card style={{ width: "50vw" }}>
+            <Card style={{ width: "100%" }}>
               <CardContent>
                 <Typography gutterBottom variant="h5" component="h2">
                   {this.props.processo.assunto}
@@ -140,7 +139,6 @@ class CardListagemProcessos extends Component {
                 </IconButton>
               </CardActions>
             </Card>
-          </div>
 
         </div>
 

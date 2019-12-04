@@ -9,7 +9,7 @@ class IntercessoraListagemProcessos extends Component {
 
     render() {
         return (
-            <div id="produtos-cards" style={{display: "flex", flexWrap: "wrap",justifyContent: "space-between"}}>
+            <div style={{display: "flex", flexWrap: "wrap",justifyContent: "space-around"}}>
                 {this.props.tableData.map((row, index) => (
                     <CardListagemProcessos processo={row} view={this.props.view} key={index}></CardListagemProcessos>
                 ))}

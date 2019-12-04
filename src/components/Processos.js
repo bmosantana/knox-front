@@ -9,6 +9,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import { Icon } from '@material-ui/core';
 import ModalCadastrarProcesso from './ModalCadastrarProcesso.js';
 import IntercessoraListagemProcessos from './IntercessoraListagemProcessos.js';
+import Header from './Header.js';
 
 import './css/dash.css';
 
@@ -87,6 +88,7 @@ class Processos extends Component {
         return (
             <div>
                 <MenuLateral />
+                <Header></Header>
 
                 <div id="none-box">
                     <span id="name">Meus Processos</span>
@@ -115,7 +117,9 @@ class Processos extends Component {
 
 
                     {/* listagem de fato */}
-                    {listDisplay}
+                    <div id="alls">
+                        {listDisplay}
+                    </div>
 
                     {/* botão para cadastrar mais um cliente */}
 

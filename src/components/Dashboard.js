@@ -5,6 +5,7 @@ import Fab from '@material-ui/core/Fab';
 import ModalCadastrarProcesso from './ModalCadastrarProcesso.js';
 import IntercessoraListagemProcessos from './IntercessoraListagemProcessos.js';
 import './css/dash.css';
+import Header from './Header.js';
 
 const enderecoApi = "https://knoxapp180120.herokuapp.com/";
 
@@ -125,6 +126,7 @@ class Dashboard extends Component {
 
     return (
       <div id="page-all">
+        <Header></Header>
         <MenuLateral />
 
         <div className="main-dash">
@@ -133,17 +135,11 @@ class Dashboard extends Component {
               {/* , <span id=" titulo-form name">{this.state.usuario}</span> */}
               <p id="name">Bem-Vindo ao Knox</p>
             </div>
-            <div className="sair">
-              <p onClick={this.handleSair}>sair</p>
-            </div>
           </div>
 
-          <div id="alls">
-            <div>
+            <div id="alls">
               {listDisplay}
             </div>
-
-          </div>
 
         </div>
 
