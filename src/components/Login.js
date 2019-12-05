@@ -199,9 +199,9 @@ class Login extends Component {
                         <Button variant="contained" color="primary" className="btn" type="submit" value="Submit" onClick={this.handleSubmit}>
                             Entrar
                             </Button>
-                        <div className="links">
+                        {/* <div className="links">
                             <label><a href="#">Esqueci minha senha</a></label>
-                        </div>
+                        </div> */}
                     </FormControl>
                 </div>
             </div>
