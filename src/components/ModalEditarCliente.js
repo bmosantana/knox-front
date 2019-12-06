@@ -346,7 +346,7 @@ class ModalEditarCliente extends Component {
           alert("Status: " + response.status)
           window.location.reload();
         } else {
-          alert("Foi")
+          alert("Cliente cadastrado com SUCESSO")
           this.props.handleClose();
         }
         return console.log(response);
