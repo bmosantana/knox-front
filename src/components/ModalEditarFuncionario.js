@@ -285,7 +285,7 @@ class ModalEditarFuncionario extends Component {
 
               <TextField
                 id="logradouro"
-                label="Logradouro*"
+                label="Bairro*"
                 margin="normal"
                 type="text"
                 value={this.state.usuario.logradouro}
@@ -295,7 +295,7 @@ class ModalEditarFuncionario extends Component {
 
               <TextField
                 id="nomeRua"
-                label="Nome Rua*"
+                label="Rua*"
                 margin="normal"
                 type="text"
                 value={this.state.usuario.nomeRua}

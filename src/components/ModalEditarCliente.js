@@ -447,7 +447,7 @@ class ModalEditarCliente extends Component {
 
               <TextField
                 id="logradouro"
-                label="Logradouro*"
+                label="Bairro*"
                 margin="normal"
                 type="text"
                 error={this.state.errors.logradouro !== '' ? true : false}
@@ -459,7 +459,7 @@ class ModalEditarCliente extends Component {
 
               <TextField
                 id="nomeRua"
-                label="Nome da Rua*"
+                label="Rua*"
                 margin="normal"
                 type="text"
                 error={this.state.errors.nomeRua !== '' ? true : false}
