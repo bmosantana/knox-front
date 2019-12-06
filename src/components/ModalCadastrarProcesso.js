@@ -296,7 +296,7 @@ class ModalCadastrarProcesso extends Component {
                 if (response.status !== 200) {
                     alert("Verifique se os dados estão corretos entes de finalizar o seu cadastro.")
                 } else {
-                    alert("Cadastro realizado com SUCESSO.")
+                    // alert("Cadastro realizado com SUCESSO.")
                     this.insertPdf();
                     // window.location.reload();
                 }

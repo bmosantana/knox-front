@@ -129,9 +129,6 @@ class Login extends Component {
             .then((response) => {
                 if (response.status === 200) {
                     console.log("Login realizado com sucesso!")
-                    console.log("Response: " + response.body)
-                    console.log("Response json: " + response.json())
-                    console.log("Request: " + request)
 
                     localStorage.setItem("email", JSON.stringify(this.state.login.email));
                     localStorage.setItem("senha", JSON.stringify(this.state.login.senha));
@@ -196,7 +193,12 @@ class Login extends Component {
                             />
 
                         </FormControl>
-                        <Button variant="contained" color="primary" className="btn" type="submit" value="Submit" onClick={this.handleSubmit}>
+                        <Button variant="contained"
+                            color="primary"
+                            className="btn"
+                            type="submit"
+                            value="Submit"
+                            onClick={this.handleSubmit}>
                             Entrar
                             </Button>
                         {/* <div className="links">
